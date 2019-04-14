@@ -1,5 +1,7 @@
 module.exports = {
-  plugins: {
-    autoprefixer: {}
-  }
-}
+	plugins: {
+		rfs: {},
+		autoprefixer: {},
+	},
+	map: true,
+};
