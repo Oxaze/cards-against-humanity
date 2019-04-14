@@ -10,6 +10,7 @@
   "dependencies": {
     "@zellwk/css-reset": "^0.1.0",
     "core-js": "^2.6.5",
+    "firebase": "^5.9.4",
     "rfs": "^8.0.4",
     "vue": "^2.6.10",
     "vue-nprogress": "^0.1.5",
