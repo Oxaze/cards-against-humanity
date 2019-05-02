@@ -1,4 +1,3 @@
-
 /* Imports
    ========================================================================== */
 
@@ -15,4 +14,111 @@
 /* Miscellaneous
    ========================================================================== */
 
-   
+body {
+    max-width: 100vw;
+    min-height: 100vh;
+    background-color: $color-white;
+    color: $color-black;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: $color-secondary;
+  color: $color-white;
+}
+
+#nprogress .bar {
+    background: $color-primary-sub;
+}
+
+#nprogress .spinner {
+   display: none !important;
+}
+
+.spinner {
+    height: 100%;
+    background-color: $color-white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column wrap;
+}
+
+.app-spinner-wrapper {
+    display: grid;
+    grid-template-rows: 0 4rem calc(100vh - 12rem) 8rem;
+}
+
+// http://vuetips.com/v-cloak-directive-hides-html-on-startup
+[v-cloak] {
+    display: none
+}
+
+
+// Header
+
+.header {
+    text-align: center;
+    padding: 1rem $mobile-padding;
+}
+
+.header__text {
+    color: $color-primary;
+    text-decoration: none;
+    display: inline;
+    background-image: linear-gradient(transparent 0%, transparent 65%, $color-secondary 65%, $color-secondary 90%, transparent 90%, transparent);
+}
+
+
+// Sign-In View
+
+.sign-in {
+
+}
+
+
+// create-or-join View
+
+.create-or-join {
+
+}
+
+
+// Footer
+.footer {
+    height: 8rem;
+    color: $color-white;
+    background: $color-black;
+}
+
+// .footer *::selection {
+//     background: $color-white;
+//     color: $color-black;
+// }
+
+.footer__wrapper * {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.footer__list {
+    margin: 0;
+    padding: 0;
+}
+
+.footer__item {
+    list-style: none;
+}
+
+.footer__item {
+    margin-left: 20px;
+}
+
+.footer__item--first {
+    margin-left: 0;
+}
+
+// - >  https://medium.com/refactoring-ui/7-practical-tips-for-cheating-at-design-40c736799886
