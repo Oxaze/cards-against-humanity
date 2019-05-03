@@ -15,4 +15,17 @@
 
 .sign-in-view {
 	min-height: calc(100vh - 8rem);
+  max-width: $tablet;
+  margin: 0 auto;
+  padding: 0 $mobile-padding;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.sign-in-view__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  flex: 1;
 }

@@ -25,7 +25,7 @@ body {
 }
 
 ::selection {
-  background-color: $color-secondary;
+  background-color: $color-primary;
   color: $color-white;
 }
 
@@ -61,7 +61,7 @@ body {
 
 .header {
     text-align: center;
-    padding: 1rem $mobile-padding;
+    padding: 1rem 0;
 }
 
 .header__text {
@@ -74,7 +74,7 @@ body {
 
 // Sign-In View
 
-.sign-in {
+.sign-in-view__form {
 
 }
 

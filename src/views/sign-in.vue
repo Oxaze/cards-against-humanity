@@ -1,17 +1,25 @@
 <template>
 	<div class="sign-in-view">
 		<CAHHeader></CAHHeader>
-		<form @submit.prevent="signInUser">
-			<div v-if="errors.lenght">
-				<ul>
-					<li v-for="error in errors" :key="error">{{ error }}</li>
-				</ul>
-			</div>
+		<div class="sign-in-view__wrapper">
+			<form @submit.prevent="signInUser" class="form">
+				<div v-if="errors.lenght">
+					<ul>
+						<li v-for="error in errors" :key="error">{{ error }}</li>
+					</ul>
+				</div>
 
-			<label for="nickname">Nickname</label>
-			<input v-model="nickname" type="text" name="nickname" />
-			<button v-on:click="signInUser" class="btn">Sign In</button>
-		</form>
+				<label for="nickname" class="form__lable">Nickname</label>
+				<input
+					v-model="nickname"
+					type="text"
+					name="nickname"
+					class="form__input form__input--primary"
+				/>
+				<br />
+				<button v-on:click="signInUser" class="btn btn--secondary">Sign In</button>
+			</form>
+		</div>
 	</div>
 </template>
 
