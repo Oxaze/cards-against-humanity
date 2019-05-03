@@ -2,6 +2,7 @@
 import Vue from "vue";
 import NProgress from "vue-nprogress";
 import VueWait from "vue-wait";
+import VeeValidate from "vee-validate";
 import router from "./router";
 import store from "./store";
 
@@ -9,6 +10,13 @@ import store from "./store";
 import App from "./App.vue";
 
 Vue.config.productionTip = false;
+Vue.use(VeeValidate, {
+	events: "change",
+	classes: true,
+	classNames: {
+		invalid: "form__input--invalid",
+	},
+});
 Vue.use(NProgress);
 Vue.use(VueWait);
 

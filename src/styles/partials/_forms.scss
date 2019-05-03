@@ -47,6 +47,21 @@
   margin-bottom: 1.5rem;
 }
 
+.form__input--invalid {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.error-message {
+  color: $color-red;
+  width: 17.5rem;
+  display: inline-block;
+  padding: 0.6rem;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  background-color: rgba( $color-red, 0.2 )
+}
+
 // -> https://dev.to/peiche/css-only-floating-label-3cp
 
 .btn {

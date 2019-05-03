@@ -3,12 +3,6 @@
 		<CAHHeader></CAHHeader>
 		<div class="sign-in-view__wrapper">
 			<form @submit.prevent="signInUser" class="form">
-				<div v-if="errors.lenght">
-					<ul>
-						<li v-for="error in errors" :key="error">{{ error }}</li>
-					</ul>
-				</div>
-
 				<div class="form__input-group">
 					<input
 						v-model="nickname"
@@ -16,10 +10,15 @@
 						autocomplete="off"
 						spellcheck="false"
 						required
+						name="nickname"
+						v-validate="'required|alpha|min:3'"
 						id="nickname"
 						class="form__input form__input--primary"
 					/>
 					<label for="nickname" class="form__lable">Nickname</label>
+					<span class="error-message" v-if="errors.has('nickname')">{{
+						errors.first("nickname")
+					}}</span>
 				</div>
 
 				<button v-on:click="signInUser" class="btn btn--secondary">Sign In</button>
@@ -39,19 +38,18 @@ export default {
 		CAHHeader,
 	},
 	data() {
-		return { nickname: null, errors: ["cock"] };
+		return { nickname: null };
 	},
 	// created() {},
 	// computed: {},
 	methods: {
 		signInUser() {
-			this.errors = [];
 			const { nickname } = this;
 
 			if (nickname) {
 				auth.signInAnonymously().catch(error => {
 					console.log(error.code, error.message);
-					this.errors.push(error.message);
+					// this.errors.push(error.message);
 				});
 
 				auth.onAuthStateChanged(user => {
@@ -70,7 +68,7 @@ export default {
 					}
 				});
 			} else {
-				this.errors.push("Nickname required.");
+				// this.errors.push("Nickname required.");
 			}
 		},
 		...mapActions(["addUserdata"]),
