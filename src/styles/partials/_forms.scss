@@ -11,21 +11,9 @@
   font-weight: $headings-font-weight;
   padding: 0 1.2rem;
   border-radius: $border-radius;
-  &[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
-    appearance: none;
-    margin: 0;
-  }
-  &[type=number] {
-    appearance: textfield;
-    -moz-appearance: textfield;
-  }
-  &::placeholder {
-    // font-size: 0.8em;
-    color: $color-grey;
-  }
   transition: all $duration-short $standard-easing;
   &:focus {
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.03), 0 0 0.3rem $color-black;
+    box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.03), 0 0 0.5rem #161616;
   }
 }
 
@@ -34,18 +22,12 @@
   color: $color-white;
 }
 
-// .form__lable {
-//   font-size: 0.8em;
-//   color: $color-grey;
-//   margin-left: $border-radius; 
-// }
-
 .form__lable {
   position: absolute;
   color: $color-grey;
   font-weight: 700;
-  top: 1rem;
   line-height: 1.35;
+  top: 1rem;
   left: 1.2rem;
   cursor: text;
   transition: all $duration-short $standard-easing;
@@ -61,9 +43,11 @@
 }
 
 .form__input-group {
-    position: relative;
-    margin-bottom: 1.5rem;
+  position: relative;
+  margin-bottom: 1.5rem;
 }
+
+// -> https://dev.to/peiche/css-only-floating-label-3cp
 
 .btn {
   display: block;
@@ -91,6 +75,6 @@
   text-transform: uppercase;
   transition: all $duration-short $standard-easing;
   &:hover, &:focus, &:active {
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.03), 0 0 0.3rem $color-black;
+    box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.03), 0 0 0.3rem #161616;
   }
 }

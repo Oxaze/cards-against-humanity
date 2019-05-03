@@ -4,9 +4,17 @@
 
 		<router-view style="flex: 1;" />
 
-		<footer class="footer1" role="contentinfo">
-			<router-link :to="{ path: '/imprint' }">Impressum</router-link>
-			<router-link :to="{ path: '/privacy' }">Datenschutz</router-link>
+		<footer class="footer" role="contentinfo">
+			<div class="footer__wrapper">
+				<ul class="footer__list">
+					<li class="footer__item footer__item--first">
+						<router-link :to="{ path: '/imprint' }">Impressum</router-link>
+					</li>
+					<li class="footer__item">
+						<router-link :to="{ path: '/privacy' }">Datenschutz</router-link>
+					</li>
+				</ul>
+			</div>
 		</footer>
 	</div>
 </template>

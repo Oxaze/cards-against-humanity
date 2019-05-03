@@ -13,10 +13,10 @@
 					<input
 						v-model="nickname"
 						type="text"
-						name="nickname"
 						autocomplete="off"
 						spellcheck="false"
 						required
+						id="nickname"
 						class="form__input form__input--primary"
 					/>
 					<label for="nickname" class="form__lable">Nickname</label>

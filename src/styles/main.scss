@@ -77,12 +77,6 @@ body {
     background-image: linear-gradient(transparent 0%, transparent 65%, $color-secondary 65%, $color-secondary 90%, transparent 90%, transparent);
 }
 
-
-// Sign-In View
-
-
-
-
 // create-or-join View
 
 .create-or-join {
@@ -91,16 +85,11 @@ body {
 
 
 // Footer
-.footer {
-    height: 8rem;
-    color: $color-white;
-    background: $color-black;
-}
 
-// .footer *::selection {
-//     background: $color-white;
-//     color: $color-black;
-// }
+.footer {
+    color: $color-grey;
+    font-size: 0.8em;
+}
 
 .footer__wrapper * {
     margin: 0;
@@ -110,15 +99,12 @@ body {
 
 .footer__list {
     margin: 0;
-    padding: 0;
+    padding: 0.5rem;
 }
 
 .footer__item {
     list-style: none;
-}
-
-.footer__item {
-    margin-left: 20px;
+    margin-left: 1rem;
 }
 
 .footer__item--first {
