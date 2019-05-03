@@ -24,6 +24,12 @@ body {
     scroll-behavior: smooth;
 }
 
+#app {
+    display: flex;
+    flex-flow: column wrap;
+    min-height: 100vh;
+}
+
 ::selection {
   background-color: $color-primary;
   color: $color-white;
@@ -74,9 +80,7 @@ body {
 
 // Sign-In View
 
-.sign-in-view__form {
 
-}
 
 
 // create-or-join View

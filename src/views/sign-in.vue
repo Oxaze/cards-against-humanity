@@ -9,14 +9,19 @@
 					</ul>
 				</div>
 
-				<label for="nickname" class="form__lable">Nickname</label>
-				<input
-					v-model="nickname"
-					type="text"
-					name="nickname"
-					class="form__input form__input--primary"
-				/>
-				<br />
+				<div class="form__input-group">
+					<input
+						v-model="nickname"
+						type="text"
+						name="nickname"
+						autocomplete="off"
+						spellcheck="false"
+						required
+						class="form__input form__input--primary"
+					/>
+					<label for="nickname" class="form__lable">Nickname</label>
+				</div>
+
 				<button v-on:click="signInUser" class="btn btn--secondary">Sign In</button>
 			</form>
 		</div>

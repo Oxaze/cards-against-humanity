@@ -2,20 +2,11 @@
 	<div id="app">
 		<nprogress-container></nprogress-container>
 
-		<router-view />
+		<router-view style="flex: 1;" />
 
-		<footer class="footer" role="contentinfo">
-			<div class="footer__wrapper">
-				<p class="footer_copyright">Copyright © Julian E. 2019</p>
-				<ul class="footer__list">
-					<li class="footer__item footer__item--first">
-						<router-link :to="{ path: '/imprint' }">Impressum</router-link>
-					</li>
-					<li class="footer__item">
-						<router-link :to="{ path: '/privacy' }">Datenschutz</router-link>
-					</li>
-				</ul>
-			</div>
+		<footer class="footer1" role="contentinfo">
+			<router-link :to="{ path: '/imprint' }">Impressum</router-link>
+			<router-link :to="{ path: '/privacy' }">Datenschutz</router-link>
 		</footer>
 	</div>
 </template>
