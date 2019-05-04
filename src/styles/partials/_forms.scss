@@ -62,6 +62,16 @@
   background-color: rgba( $color-red, 0.2 )
 }
 
+.error-message__transition-enter-active,
+.error-message__transition-leave-active {
+    transition: all $duration-mid $standard-easing
+ }
+
+.error-message__transition-enter,
+.error-message__transition-leave-to {
+    opacity: 0;
+}
+
 // -> https://dev.to/peiche/css-only-floating-label-3cp
 
 .btn {

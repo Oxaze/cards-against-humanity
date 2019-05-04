@@ -1,6 +1,7 @@
 <template>
 	<div class="sign-in-view">
 		<CAHHeader></CAHHeader>
+
 		<div class="sign-in-view__wrapper">
 			<form @submit.prevent="signInUser" class="form">
 				<div class="form__input-group">
@@ -16,12 +17,14 @@
 						class="form__input form__input--primary"
 					/>
 					<label for="nickname" class="form__lable">Nickname</label>
-					<span class="error-message" v-if="errors.has('nickname')">{{
-						errors.first("nickname")
-					}}</span>
+					<transition name="error-message__transition">
+						<span class="error-message" v-if="errors.has('nickname')">{{
+							errors.first("nickname")
+						}}</span>
+					</transition>
 				</div>
 
-				<button v-on:click="signInUser" class="btn btn--secondary">Sign In</button>
+				<button type="submit" class="btn btn--secondary">Sign In</button>
 			</form>
 		</div>
 	</div>
@@ -46,10 +49,10 @@ export default {
 		signInUser() {
 			const { nickname } = this;
 
-			if (nickname) {
+			if (!this.errors.has("nickname") && nickname) {
 				auth.signInAnonymously().catch(error => {
-					console.log(error.code, error.message);
-					// this.errors.push(error.message);
+					console.error(error.code, error.message);
+					this.$validator.errors.add({ field: "nickname", msg: error.message });
 				});
 
 				auth.onAuthStateChanged(user => {
@@ -67,8 +70,6 @@ export default {
 						console.log("User is not signed in (anymore)");
 					}
 				});
-			} else {
-				// this.errors.push("Nickname required.");
 			}
 		},
 		...mapActions(["addUserdata"]),
