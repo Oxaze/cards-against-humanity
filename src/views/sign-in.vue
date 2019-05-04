@@ -12,7 +12,7 @@
 						spellcheck="false"
 						required
 						name="nickname"
-						v-validate="'required|alpha|min:3'"
+						v-validate="'required|alpha|min:4'"
 						id="nickname"
 						class="form__input form__input--primary"
 					/>

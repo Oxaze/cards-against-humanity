@@ -19,13 +19,6 @@ export default {
 		CreateOrJoinSwitch,
 		Create: () => import("@/components/Create.vue"),
 	},
-	data() {
-		return {
-			// currentTab: "CreateOrJoinSwitch",
-		};
-	},
-	// created() {},
-	// computed: {},
 	methods: {
 		...mapState(["currentTab"]),
 	},
