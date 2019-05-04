@@ -1,30 +1,33 @@
 <template>
 	<div class="main-wrapper">
 		<CAHHeader></CAHHeader>
-		<component v-bind:is="currentTab"></component>
+		<keep-alive>
+			<component v-bind:is="currentTab()"></component>
+		</keep-alive>
 	</div>
 </template>
 
 <script>
 import CAHHeader from "@/components/Header.vue";
 import CreateOrJoinSwitch from "@/components/CreateOrJoinSwitch.vue";
-// import { auth, db } from "@/firebase.js";
-// import { mapActions, mapGetters } from "vuex";
+import { mapState } from "vuex";
 
 export default {
 	name: "CreateOrJoin",
 	components: {
 		CAHHeader,
 		CreateOrJoinSwitch,
+		Create: () => import("@/components/Create.vue"),
 	},
 	data() {
 		return {
-			currentTab: "CreateOrJoinSwitch",
-			tabs: ["CreateOrJoinSwitch"],
+			// currentTab: "CreateOrJoinSwitch",
 		};
 	},
 	// created() {},
 	// computed: {},
-	// methods: {},
+	methods: {
+		...mapState(["currentTab"]),
+	},
 };
 </script>

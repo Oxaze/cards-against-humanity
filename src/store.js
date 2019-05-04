@@ -10,10 +10,14 @@ export default new Vuex.Store({
 			nickname: "",
 			uid: "",
 		},
+		currentTab: "CreateOrJoinSwitch",
 	},
 	mutations: {
 		SET_USER(state, user) {
 			state.user = user;
+		},
+		SET_TAB(state, newTab) {
+			state.currentTab = newTab;
 		},
 	},
 	actions: {
