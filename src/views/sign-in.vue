@@ -65,6 +65,7 @@ export default {
 
 						this.addUserdata({ nickname, uid });
 						console.log("User is signed in with id", uid);
+
 						this.$router.push("create-or-join");
 					} else {
 						console.log("User is not signed in (anymore)");

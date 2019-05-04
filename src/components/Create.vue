@@ -107,10 +107,17 @@ export default {
 					players: [userRef],
 				});
 
-				this.$router.push(`servers/${serverRef.id}`);
+				// ADD: ASK SERVER IF ROOMNAME EXISTS!!!!!!!!!!!!!!
+
+				userRef.update({ room: serverRef });
+				this.addServerdata(serverRef.id);
+				console.log(`Created Server with ID ${serverRef.id} successfully`);
+
+				this.$router.push(`server/${serverRef.id}`);
 			}
 		},
 		...mapState(["user"]),
+		...mapActions(["addServerdata"]),
 	},
 };
 </script>

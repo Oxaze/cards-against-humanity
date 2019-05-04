@@ -16,5 +16,10 @@ export default new Router({
 			name: "CreateOrJoin",
 			component: () => import("./views/create-or-join.vue"),
 		},
+		{
+			path: "/server/:id",
+			name: "Server",
+			component: () => import("./views/server.vue"),
+		},
 	],
 });
