@@ -8,8 +8,7 @@
   padding: 0 $mobile-padding;
 }
 
-.sign-in-view {
-	// min-height: calc(100vh - 8rem);
+.main-wrapper {
   max-width: $tablet;
   margin: 0 auto;
   padding: 0 $mobile-padding;
@@ -17,7 +16,15 @@
   flex-flow: column wrap;
 }
 
-.sign-in-view__wrapper {
+.create-or-join-wrapper {
+  flex: 1;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.sign-in-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;

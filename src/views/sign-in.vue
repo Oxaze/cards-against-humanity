@@ -1,8 +1,8 @@
 <template>
-	<div class="sign-in-view">
+	<div class="main-wrapper">
 		<CAHHeader></CAHHeader>
 
-		<div class="sign-in-view__wrapper">
+		<div class="sign-in-wrapper">
 			<form @submit.prevent="signInUser" class="form">
 				<div class="form__input-group">
 					<input
@@ -65,7 +65,7 @@ export default {
 
 						this.addUserdata({ nickname, uid });
 						console.log("User is signed in with id", uid);
-						this.$router.push("join");
+						this.$router.push("create-or-join");
 					} else {
 						console.log("User is not signed in (anymore)");
 					}

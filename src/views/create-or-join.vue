@@ -1,24 +1,30 @@
 <template>
-	<div class="news-view">
+	<div class="main-wrapper">
 		<CAHHeader></CAHHeader>
+		<component v-bind:is="currentTab"></component>
 	</div>
 </template>
 
 <script>
 import CAHHeader from "@/components/Header.vue";
-import { auth, db } from "@/firebase.js";
-import { mapActions, mapGetters } from "vuex";
+import CreateOrJoinSwitch from "@/components/CreateOrJoinSwitch.vue";
+// import { auth, db } from "@/firebase.js";
+// import { mapActions, mapGetters } from "vuex";
 
 export default {
-	name: "SignIn",
+	name: "CreateOrJoin",
 	components: {
 		CAHHeader,
+		CreateOrJoinSwitch,
 	},
 	data() {
-		return {};
+		return {
+			currentTab: "CreateOrJoinSwitch",
+			tabs: ["CreateOrJoinSwitch"],
+		};
 	},
 	// created() {},
 	// computed: {},
-	methods: {},
+	// methods: {},
 };
 </script>

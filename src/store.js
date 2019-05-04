@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import { db } from "./firebase";
+// import { db } from "./firebase";
 
 Vue.use(Vuex);
 

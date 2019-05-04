@@ -12,8 +12,8 @@ export default new Router({
 			component: SignIn,
 		},
 		{
-			path: "/join",
-			name: "about",
+			path: "/create-or-join",
+			name: "CreateOrJoin",
 			component: () => import("./views/create-or-join.vue"),
 		},
 	],
