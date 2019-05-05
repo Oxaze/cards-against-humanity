@@ -50,27 +50,41 @@ export default {
 			const { nickname } = this;
 
 			if (!this.errors.has("nickname") && nickname) {
-				auth.signInAnonymously().catch(error => {
-					console.error(error.code, error.message);
-					this.$validator.errors.add({ field: "nickname", msg: error.message });
-				});
+				db.collection("players")
+					.where("nickname", "==", nickname)
+					.get()
+					.then(snapshot => {
+						// ASK AUTH IF ALREADY LOGED IN OR IF UID ALREADY EXISTS FOR THIS NICKNAME
+						if (!snapshot.docs.length) {
+							auth.signInAnonymously().catch(error => {
+								console.error(error.code, error.message);
+								this.$validator.errors.add({ field: "nickname", msg: error.message });
+							});
 
-				auth.onAuthStateChanged(user => {
-					if (user) {
-						const { uid } = user;
+							auth.onAuthStateChanged(user => {
+								if (user) {
+									const { uid } = user;
 
-						db.collection("players")
-							.doc(uid)
-							.set({ nickname });
+									db.collection("players")
+										.doc(uid)
+										.set({ nickname });
 
-						this.addUserdata({ nickname, uid });
-						console.log("User is signed in with id", uid);
+									this.addUserdata({ nickname, uid });
+									console.log("User is signed in with id", uid);
 
-						this.$router.push("create-or-join");
-					} else {
-						console.log("User is not signed in (anymore)");
-					}
-				});
+									this.$router.push("create-or-join");
+								} else {
+									console.log("User is not signed in (anymore)");
+								}
+							});
+						} else {
+							this.$validator.errors.add({
+								field: "nickname",
+								msg: "Nickname already assigned to another Player.",
+							});
+						}
+					})
+					.catch(err => {});
 			}
 		},
 		...mapActions(["addUserdata"]),

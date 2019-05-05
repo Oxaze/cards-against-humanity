@@ -99,21 +99,34 @@ export default {
 				password &&
 				maxPlayers
 			) {
-				serverRef.set({
-					name: serverName,
-					password,
-					maxPlayers,
-					owner: userRef,
-					players: [userRef],
-				});
+				db.collection("rooms")
+					.where("name", "==", serverName)
+					.get()
+					.then(snapshot => {
+						if (!snapshot.docs.length) {
+							serverRef.set({
+								name: serverName,
+								password,
+								maxPlayers,
+								owner: userRef,
+								players: [userRef],
+							});
 
-				// ADD: ASK SERVER IF ROOMNAME EXISTS!!!!!!!!!!!!!!
+							userRef.update({ room: serverRef });
+							this.addServerdata(serverRef.id);
+							console.log(`Created Server with ID ${serverRef.id} successfully`);
 
-				userRef.update({ room: serverRef });
-				this.addServerdata(serverRef.id);
-				console.log(`Created Server with ID ${serverRef.id} successfully`);
-
-				this.$router.push(`server/${serverRef.id}`);
+							this.$router.push(`server/${serverRef.id}`);
+						} else {
+							this.$validator.errors.add({
+								field: "serverName",
+								msg: "Server name already exists.",
+							});
+						}
+					})
+					.catch(err => {
+						console.log(err);
+					});
 			}
 		},
 		...mapState(["user"]),
