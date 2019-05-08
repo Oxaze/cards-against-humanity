@@ -54,8 +54,20 @@ export default {
 					.where("nickname", "==", nickname)
 					.get()
 					.then(snapshot => {
-						// ASK AUTH IF ALREADY LOGED IN OR IF UID ALREADY EXISTS FOR THIS NICKNAME
-						if (!snapshot.docs.length) {
+						console.log("Current User:", !!auth.currentUser, 0);
+						const docIDs = [];
+
+						if (auth.currentUser) {
+							snapshot.forEach(doc => {
+								docIDs.push(doc.id);
+							});
+						}
+
+						// Login if same nickname is not given anywhere elese exept if its the own uid
+						if (
+							!snapshot.docs.length ||
+							(auth.currentUser ? docIDs.includes(auth.currentUser.uid) : false)
+						) {
 							auth.signInAnonymously().catch(error => {
 								console.error(error.code, error.message);
 								this.$validator.errors.add({ field: "nickname", msg: error.message });
@@ -84,7 +96,9 @@ export default {
 							});
 						}
 					})
-					.catch(err => {});
+					.catch(err => {
+						console.error(err);
+					});
 			}
 		},
 		...mapActions(["addUserdata"]),
