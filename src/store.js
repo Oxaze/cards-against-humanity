@@ -11,7 +11,7 @@ export default new Vuex.Store({
 			uid: "",
 		},
 		currentTab: "CreateOrJoinSwitch",
-		server: {
+		room: {
 			id: "",
 			// ...
 		},
@@ -23,8 +23,8 @@ export default new Vuex.Store({
 		SET_TAB(state, newTab) {
 			state.currentTab = newTab;
 		},
-		SET_SERVER(state, serverID) {
-			state.server.id = serverID;
+		SET_SERVER(state, roomID) {
+			state.room.id = roomID;
 		},
 	},
 	actions: {
@@ -35,11 +35,11 @@ export default new Vuex.Store({
 				throw new Error("Either nickname or UID not defined.");
 			}
 		},
-		addServerdata({ commit }, id) {
+		addRoomdata({ commit }, id) {
 			if (id) {
 				commit("SET_SERVER", id);
 			} else {
-				throw new Error("Server ID not defined.");
+				throw new Error("Room ID not defined.");
 			}
 		},
 	},

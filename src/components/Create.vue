@@ -1,22 +1,22 @@
 <template>
 	<div class="sign-in-wrapper">
-		<form @submit.prevent="createServer" class="form">
+		<form @submit.prevent="createRoom" class="form">
 			<div class="form__input-group">
 				<input
-					v-model="serverName"
+					v-model="roomName"
 					type="text"
 					autocomplete="off"
 					spellcheck="false"
 					required
-					name="serverName"
+					name="roomName"
 					v-validate="'required|alpha|min:4'"
-					id="serverName"
+					id="roomName"
 					class="form__input form__input--primary"
 				/>
-				<label for="serverName" class="form__lable">Server Name</label>
+				<label for="roomName" class="form__lable">Room Name</label>
 				<transition name="error-message__transition">
-					<span class="error-message" v-if="errors.has('serverName')">{{
-						errors.first("serverName")
+					<span class="error-message" v-if="errors.has('roomName')">{{
+						errors.first("roomName")
 					}}</span>
 				</transition>
 			</div>
@@ -65,7 +65,7 @@
 				</transition>
 			</div>
 
-			<button type="submit" class="btn btn--secondary">Create Server</button>
+			<button type="submit" class="btn btn--secondary">Create Room</button>
 		</form>
 	</div>
 </template>
@@ -78,7 +78,7 @@ export default {
 	name: "Create",
 	data() {
 		return {
-			serverName: null,
+			roomName: null,
 			password: null,
 			maxPlayers: null,
 		};
@@ -86,41 +86,41 @@ export default {
 	// created() {},
 	// computed: {},
 	methods: {
-		createServer() {
-			const { serverName, password, maxPlayers } = this;
+		createRoom() {
+			const { roomName, password, maxPlayers } = this;
 			const userRef = db.collection("players").doc(this.user().uid);
-			const serverRef = db.collection("rooms").doc();
+			const roomRef = db.collection("rooms").doc();
 
 			if (
-				!this.errors.has("serverName") &&
+				!this.errors.has("roomName") &&
 				!this.errors.has("password") &&
 				!this.errors.has("maxPlayers") &&
-				serverName &&
+				roomName &&
 				password &&
 				maxPlayers
 			) {
 				db.collection("rooms")
-					.where("name", "==", serverName)
+					.where("name", "==", roomName)
 					.get()
 					.then(snapshot => {
 						if (!snapshot.docs.length) {
-							serverRef.set({
-								name: serverName,
+							roomRef.set({
+								name: roomName,
 								password,
 								maxPlayers,
 								owner: userRef,
 								players: [userRef],
 							});
 
-							userRef.update({ room: serverRef });
-							this.addServerdata(serverRef.id);
-							console.log(`Created Server with ID ${serverRef.id} successfully`);
+							userRef.update({ room: roomRef });
+							this.addRoomdata(roomRef.id);
+							console.log(`Created Room with ID ${roomRef.id} successfully`);
 
-							this.$router.push(`server/${serverRef.id}`);
+							this.$router.push(`room/${roomRef.id}`);
 						} else {
 							this.$validator.errors.add({
-								field: "serverName",
-								msg: "Server name already exists.",
+								field: "roomName",
+								msg: "Room name already exists.",
 							});
 						}
 					})
@@ -130,7 +130,7 @@ export default {
 			}
 		},
 		...mapState(["user"]),
-		...mapActions(["addServerdata"]),
+		...mapActions(["addRoomdata"]),
 	},
 };
 </script>
