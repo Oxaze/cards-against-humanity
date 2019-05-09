@@ -78,6 +78,49 @@ body {
     background-image: linear-gradient(transparent 0%, transparent 65%, $color-secondary 65%, $color-secondary 90%, transparent 90%, transparent);
 }
 
+// Card
+
+.card {
+    background-color: $color-light-grey;
+    color: $color-black;
+    // Verhältniss 4:5
+    height: 20rem;
+    width: 16rem;
+    padding: 1rem 1.5rem;
+    border-radius: $border-radius;
+    margin-bottom: 2.5rem;
+    
+}
+
+.card--white {
+    background-color: $color-white;
+}
+
+
+// Picker
+
+.picker {
+    background-color: $color-black;
+    color: $color-white;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 5rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.picker__statement {
+    height: 100%;
+    flex-basis: 16rem;
+    // margin-right: 2.5rem;
+    // margin-bottom: 2.5rem;
+}
+
+.picker__cards-segment {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
 
 // Footer
 
