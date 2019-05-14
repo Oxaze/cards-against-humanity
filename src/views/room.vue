@@ -1,6 +1,8 @@
 <template>
 	<div class="room-wrapper">
-		<aside class="aside"></aside>
+		<aside class="aside">
+			<div class="role"><h4>You are Czar!</h4></div>
+		</aside>
 		<main class="main">
 			<div class="picker">
 				<div class="picker__statement">
@@ -10,8 +12,21 @@
 					</h3>
 				</div>
 				<card class="card--white"></card>
+				<card class="card--white"></card>
+				<card class="card--white"></card>
+				<card class="card--white"></card>
 			</div>
-			<div class="gallery"><card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card></div>
+			<div class="gallery">
+				<card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card
+				><card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card
+				><card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card
+				><card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card
+				><card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card
+				><card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card
+				><card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card
+				><card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card
+				><card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card>
+			</div>
 		</main>
 	</div>
 </template>

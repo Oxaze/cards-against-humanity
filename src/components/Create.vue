@@ -88,7 +88,7 @@ export default {
 	methods: {
 		createRoom() {
 			const { roomName, password, maxPlayers } = this;
-			const userRef = db.collection("players").doc(this.user().uid);
+			const userRef = this.user().uid ? db.collection("players").doc(this.user().uid) : null;
 			const roomRef = db.collection("rooms").doc();
 
 			if (
@@ -103,13 +103,13 @@ export default {
 					.where("name", "==", roomName)
 					.get()
 					.then(snapshot => {
-						if (!snapshot.docs.length) {
+						if (!snapshot.docs.length && userRef) {
 							roomRef.set({
 								name: roomName,
 								password,
 								maxPlayers,
 								owner: userRef,
-								players: [userRef],
+								players: [this.user().nickname],
 							});
 
 							userRef.update({ room: roomRef });
@@ -117,6 +117,11 @@ export default {
 							console.log(`Created Room with ID ${roomRef.id} successfully`);
 
 							this.$router.push(`room/${roomRef.id}`);
+						} else if (!userRef) {
+							this.$validator.errors.add({
+								field: "roomName",
+								msg: "User not logged in.",
+							});
 						} else {
 							this.$validator.errors.add({
 								field: "roomName",
