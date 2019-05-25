@@ -13,6 +13,10 @@
 					<li class="footer__item">
 						<router-link :to="{ path: '/privacy' }">Privacy</router-link>
 					</li>
+					<!-- TODO: ADD SETTINGS WHEEL WITH DARK MODE SUPPORT AND V-IF STATEMENT -->
+					<li class="footer__item" @click="test">
+						<a href="#">destory</a>
+					</li>
 				</ul>
 			</div>
 		</footer>
@@ -23,10 +27,17 @@
 
 <script>
 import NprogressContainer from "vue-nprogress/src/NprogressContainer.vue";
+import { auth } from "./firebase.js";
 
 export default {
 	components: {
 		NprogressContainer,
+	},
+	methods: {
+		test() {
+			auth.currentUser.delete();
+			console.log("User delted", auth.currentUser);
+		},
 	},
 };
 </script>

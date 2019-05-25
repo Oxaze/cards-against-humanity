@@ -1,10 +1,12 @@
 import Vue from "vue";
 import Router from "vue-router";
+import { auth } from "./firebase.js";
 import SignIn from "./views/sign-in.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
+	mode: "history",
 	routes: [
 		{
 			path: "/",
@@ -15,11 +17,51 @@ export default new Router({
 			path: "/create-or-join",
 			name: "CreateOrJoin",
 			component: () => import("./views/create-or-join.vue"),
+			meta: {
+				requiresAuth: true,
+			},
 		},
 		{
 			path: "/room/:id",
 			name: "Room",
 			component: () => import("./views/room.vue"),
+			meta: {
+				requiresAuth: true,
+			},
+		},
+		// TODO: CREATE VIEW
+		{
+			path: "/page-not-found",
+			name: "page-not-found",
+			component: () => import("./views/page-not-found.vue"),
+		},
+		{
+			path: "/page-not-found",
+			component: () => import("./views/page-not-found.vue"),
+			alias: "*",
 		},
 	],
 });
+
+router.beforeEach((to, from, next) => {
+	const { currentUser } = auth;
+	const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+	const t1 = Date.now();
+
+	auth.onAuthStateChanged(() => {
+		console.log(Date.now() - t1);
+	});
+
+	if (requiresAuth && !currentUser) {
+		next("/");
+	} else if (!requiresAuth && currentUser) {
+		next("/create-or-join");
+	} else {
+		next();
+	}
+});
+
+export default router;
+
+// -> https://medium.com/@anas.mammeri/vue-2-firebase-how-to-build-a-vue-app-with-firebase-authentication-system-in-15-minutes-fdce6f289c3c
