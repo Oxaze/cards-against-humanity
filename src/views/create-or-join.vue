@@ -10,7 +10,7 @@
 <script>
 import CAHHeader from "@/components/Header.vue";
 import CreateOrJoinSwitch from "@/components/CreateOrJoinSwitch.vue";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
 	name: "CreateOrJoin",
@@ -19,8 +19,12 @@ export default {
 		CreateOrJoinSwitch,
 		Create: () => import("@/components/Create.vue"),
 	},
+	created() {
+		this.SET_TAB("CreateOrJoinSwitch");
+	},
 	methods: {
 		...mapState(["currentTab"]),
+		...mapMutations(["SET_TAB"]),
 	},
 };
 </script>

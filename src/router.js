@@ -44,22 +44,36 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-	const { currentUser } = auth;
+	// const { currentUser } = auth;
+	// const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+	// console.log("requiresAuth", requiresAuth);
+	// console.log("currenUser", currentUser);
+
+	// if (requiresAuth && !currentUser) {
+	// 	console.log(1);
+	// 	next("/");
+	// } else if (!requiresAuth && currentUser) {
+	// 	console.log(2);
+	// 	next("/create-or-join");
+	// } else {
+	// 	console.log(3);
+	// 	next();
+	// }
+
 	const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-
-	const t1 = Date.now();
-
-	auth.onAuthStateChanged(() => {
-		console.log(Date.now() - t1);
+	auth.onAuthStateChanged(user => {
+		if (requiresAuth && !user) {
+			// TODO: Apply to Home View!!
+			// debugger;
+			next({
+				path: "/",
+				params: { redirectedThroughAuth: "true" },
+			});
+		} else {
+			// debugger;
+			next();
+		}
 	});
-
-	if (requiresAuth && !currentUser) {
-		next("/");
-	} else if (!requiresAuth && currentUser) {
-		next("/create-or-join");
-	} else {
-		next();
-	}
 });
 
 export default router;

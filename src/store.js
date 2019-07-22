@@ -10,7 +10,7 @@ export default new Vuex.Store({
 			nickname: "",
 			uid: "",
 		},
-		currentTab: "CreateOrJoinSwitch",
+		currentTab: "",
 		room: {
 			id: "",
 			// ...
@@ -25,6 +25,10 @@ export default new Vuex.Store({
 		},
 		SET_SERVER(state, roomID) {
 			state.room.id = roomID;
+		},
+		DELETE_USER(state) {
+			state.user.nickname = "";
+			state.user.uid = "";
 		},
 	},
 	actions: {
