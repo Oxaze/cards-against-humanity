@@ -1,39 +1,62 @@
 .footer__wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  float: right;
-  margin: 0 auto;
-  padding: 0 $mobile-padding;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
+	float: right;
+	margin: 0 auto;
+	padding: 0 $mobile-padding;
 }
 
 .main-wrapper {
-  max-width: $tablet;
-  margin: 0 auto;
-  padding: 0 $mobile-padding;
-  display: flex;
-  flex-flow: column wrap;
+	max-width: $tablet;
+	margin: 0 auto;
+	padding: 0 $mobile-padding;
+	display: flex;
+	flex-flow: column wrap;
 }
 
 .create-or-join-wrapper {
-  flex: 1;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
+	flex: 1;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .sign-in-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column wrap;
-  flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
+	flex: 1;
 }
 
 .room-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-   
+	display: grid;
+	grid-template-columns: 1fr 4fr;
 }
+
+.picker > * {
+	display: flex;
+	flex-wrap: wrap;
+	margin: calc((1rem / 2) * -1);
+}
+
+.picker > * > * {
+	flex-grow: 1;
+	flex-basis: calc((#{$mobile} - (100% - 1.25rem) * 999));
+	margin: calc(1.5rem / 2);
+	min-width: 16rem;
+}
+
+// .picker > * > * {
+// 	flex-grow: 1;
+// 	flex-basis: calc((768px - (100% - 1rem)) * 999);
+// 	margin: calc(1.25rem / 2);
+// }
+
+// .picker > * > :nth-last-child(n + 5),
+// .picker > * > :nth-last-child(n + 5) ~ * {
+// 	flex-basis: 100%;
+// }

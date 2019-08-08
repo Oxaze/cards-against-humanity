@@ -104,13 +104,23 @@ export default {
 					.get()
 					.then(snapshot => {
 						if (!snapshot.docs.length && userRef) {
+							// Set initial room data
 							roomRef.set({
 								name: roomName,
 								password,
 								maxPlayers,
 								owner: userRef,
-								players: [this.user().nickname],
 							});
+
+							// Add player to room data
+							roomRef
+								.collection("players")
+								.doc(this.user().uid)
+								.set({
+									isCzar: false,
+									name: this.user().nickname,
+									score: 0,
+								});
 
 							userRef.update({ room: roomRef });
 							this.addRoomdata(roomRef.id);
