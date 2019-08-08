@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import { auth } from "@/firebase.js";
 import { mapMutations } from "vuex";
+import { auth } from "@/firebase.js";
 
 export default {
 	name: "SignOutFrom",

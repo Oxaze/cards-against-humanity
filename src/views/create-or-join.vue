@@ -8,9 +8,9 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
 import CAHHeader from "@/components/Header.vue";
 import CreateOrJoinSwitch from "@/components/CreateOrJoinSwitch.vue";
-import { mapState, mapMutations } from "vuex";
 
 export default {
 	name: "CreateOrJoin",

@@ -32,9 +32,9 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 import Card from "@/components/Card.vue";
 import { db } from "@/firebase.js";
-import { mapActions, mapState } from "vuex";
 
 export default {
 	name: "Room",

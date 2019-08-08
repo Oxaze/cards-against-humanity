@@ -41,8 +41,8 @@
 
 <script>
 import { HollowDotsSpinner } from "epic-spinners";
-import { auth, db } from "@/firebase.js";
 import { mapActions } from "vuex";
+import { auth, db } from "@/firebase.js";
 
 export default {
 	name: "SignInFrom",
@@ -92,7 +92,7 @@ export default {
 
 									this.addUserdata({ nickname, uid });
 									console.log("User is signed in with id", uid);
-									
+
 									this.$router.push("create-or-join");
 									this.$wait.end("loadingNext");
 								} else {

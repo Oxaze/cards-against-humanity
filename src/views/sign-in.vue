@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import CAHHeader from "@/components/Header.vue";
 import { mapState, mapMutations } from "vuex";
+import CAHHeader from "@/components/Header.vue";
 import { auth } from "@/firebase.js";
 
 export default {

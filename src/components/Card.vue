@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import { db } from "@/firebase.js";
 import { mapActions, mapState } from "vuex";
+import { db } from "@/firebase.js";
 
 export default {
 	name: "Card",
