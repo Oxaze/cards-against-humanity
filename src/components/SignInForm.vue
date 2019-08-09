@@ -82,6 +82,8 @@ export default {
 								this.$validator.errors.add({ field: "nickname", msg: error.message });
 							});
 
+							// FIXME: Sign in with same user doesnt work
+
 							auth.onAuthStateChanged(user => {
 								if (user) {
 									const { uid } = user;

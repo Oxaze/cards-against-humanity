@@ -37,18 +37,33 @@
 	grid-template-columns: 1fr 4fr;
 }
 
-.picker > * {
-	display: flex;
-	flex-wrap: wrap;
-	margin: calc((1rem / 2) * -1);
+.picker {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 16rem);
+	grid-template-rows: repeat(auto-fill, 20rem);
+	grid-gap: 1.5rem;
 }
 
-.picker > * > * {
-	flex-grow: 1;
-	flex-basis: calc((#{$mobile} - (100% - 1.25rem) * 999));
-	margin: calc(1.5rem / 2);
-	min-width: 16rem;
+.gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 16rem);
+	grid-template-rows: repeat(auto-fill, 20rem);
+	grid-gap: 2.5rem;
+	padding: 2.5rem;
 }
+
+// .picker > * {
+// 	display: flex;
+// 	flex-wrap: wrap;
+// 	margin: calc((1rem / 2) * -1);
+// }
+
+// .picker > * > * {
+// 	flex-grow: 1;
+// 	flex-basis: calc((#{$mobile} - (100% - 1.25rem) * 999));
+// 	margin: calc(1.5rem / 2);
+// 	min-width: 16rem;
+// }
 
 // .picker > * > * {
 // 	flex-grow: 1;

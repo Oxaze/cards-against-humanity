@@ -5,22 +5,19 @@
 		</aside>
 		<main class="main">
 			<div class="picker">
-				<div>
-					<div class="picker__statement">
-						<h3>
-							In 1.000 Jahren, wenn Papiergeld nur eine entfernte Erinnerung ist, wird ______ unsere
-							Währung sein.
-						</h3>
-					</div>
-					<card class="card--white" text="Halli"></card>
-					<card class="card--white" text="Hallo"></card>
-					<card class="card--white" text="Du dummer"></card>
-					<card class="card--white" text="Hurensohn :)"></card>
-					<card class="card--white" text="Hurensohn :)"></card>
-					<card class="card--white" text="Hurensohn :)"></card>
-					<card class="card--white" text="Hurensohn :)"></card>
+				<div class="picker__statement">
+					<h3>
+						In 1.000 Jahren, wenn Papiergeld nur eine entfernte Erinnerung ist, wird ______ unsere
+						Währung sein.
+					</h3>
 				</div>
+				<card class="card--white" text="Halli"></card>
+				<card class="card--white" text="Hallo"></card>
+				<card class="card--white" text="Du dummer"></card>
+				<card class="card--white" text="Hurensohn :)"></card>
+				<card class="card--white" text="Hurensohn :)"></card>
 			</div>
+
 			<div class="gallery">
 				<card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card
 				><card text="Ein homoerotischer Volleyball-Zusammenschnitt"></card
