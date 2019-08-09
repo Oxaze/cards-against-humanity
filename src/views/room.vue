@@ -12,14 +12,13 @@
 					</h3>
 				</div>
 
-				<div class="picker_wrapper">
+				<div class="picker__wrapper">
 					<div class="picker__wrapper__container">
 						<card class="card--white" text="Halli"></card>
 						<card class="card--white" text="Hallo"></card>
 						<card class="card--white" text="LELELEL"></card>
 						<card class="card--white" text="Du dummer"></card>
 						<card class="card--white" text="Hurensohn :)"></card>
-						<card class="card--white" text="Hurensohn 2 lol"></card>
 					</div>
 				</div>
 			</div>
