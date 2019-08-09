@@ -38,18 +38,29 @@
 }
 
 .picker {
-	width: 100vw;
-	overflow-x: scroll;
+	display: flex;
+	flex-flow: row nowrap;
 }
 
-.picker__wrapper {
+.picker_wrapper {
+	width: 100vw;
+	overflow-x: auto;
+	padding: 1.5rem 2.5rem 1.5rem 1.25rem;
+}
+
+.picker__statement {
+	width: calc(16rem + 1.5 * #{$grid-gap});
+	padding: 1.5rem 1.25rem 1.5rem 2.5rem;
+}
+
+.picker__wrapper__container {
 	display: flex;
 	flex-flow: row nowrap;
 	margin: 0 calc(2.5rem / 2 * -1);
 	width: fit-content;
 }
 
-.picker__wrapper > * {
+.picker__wrapper__container > * {
 	margin: 0 calc(2.5rem / 2);
 }
 
