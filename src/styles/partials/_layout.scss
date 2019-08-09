@@ -38,10 +38,19 @@
 }
 
 .picker {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, 16rem);
-	grid-template-rows: repeat(auto-fill, 20rem);
-	grid-gap: 1.5rem;
+	width: 100vw;
+	overflow-x: scroll;
+}
+
+.picker__wrapper {
+	display: flex;
+	flex-flow: row nowrap;
+	margin: 0 calc(2.5rem / 2 * -1);
+	width: fit-content;
+}
+
+.picker__wrapper > * {
+	margin: 0 calc(2.5rem / 2);
 }
 
 .gallery {
