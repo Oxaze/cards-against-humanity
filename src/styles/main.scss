@@ -124,6 +124,25 @@ body {
 	box-shadow: 2px 0 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
+// Scoreboard
+
+.scoreboard {
+	margin: 2.5rem 1.5rem;
+}
+
+.scoreboard__item {
+	margin-bottom: 1.5rem;
+}
+
+.svg-tooltip {
+	display: inline-block;
+	color: inherit;
+	cursor: default;
+	height: 18px;
+	vertical-align: middle;
+	margin-bottom: 4px;
+}
+
 // Footer
 
 .footer {

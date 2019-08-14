@@ -110,6 +110,9 @@ export default {
 								password,
 								maxPlayers,
 								owner: userRef,
+								started: false,
+								czar: null,
+								locked: false,
 							});
 
 							// Add player to room data

@@ -48,6 +48,7 @@
 
 .picker__wrapper {
 	margin-bottom: 5px;
+	flex-shrink: 1;
 	width: 100vw;
 	overflow-x: auto;
 	padding: calc(#{$grid-gap} * 0.6) $grid-gap calc(#{$grid-gap} * 0.6 - 5px)
@@ -66,6 +67,10 @@
 	flex-flow: row nowrap;
 	margin: 0 calc(#{$grid-gap} / 2 * -1);
 	width: fit-content;
+}
+
+.picker__wrapper__container > *:last-child {
+	margin-right: 2.5rem;
 }
 
 .picker__wrapper__container > * {
