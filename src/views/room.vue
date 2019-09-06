@@ -11,6 +11,7 @@
 				</li>
 				<li class="scoreboard__item">
 					<p>
+						<!-- TODO: Add http://www.zondicons.com/ -->
 						<img
 							src="./../assets/icons/baseline-star-24px.svg"
 							alt="Star Icon"

@@ -63,14 +63,11 @@ router.beforeEach((to, from, next) => {
 	const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 	auth.onAuthStateChanged(user => {
 		if (requiresAuth && !user) {
-			// TODO: Apply to Home View!!
-			// debugger;
 			next({
 				path: "/",
 				params: { redirectedThroughAuth: "true" },
 			});
 		} else {
-			// debugger;
 			next();
 		}
 	});

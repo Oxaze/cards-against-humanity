@@ -54,64 +54,39 @@ export default {
 	},
 	methods: {
 		signInUser() {
-			// debugger;
-			const { nickname } = this;
-
-			if (!this.errors.has("nickname") && nickname) {
-				this.$wait.start("loadingNext");
+			if (!this.errors.has("nickname") && this.nickname) {
+				// Search for already existing players with same nickname
 				db.collection("players")
-					.where("nickname", "==", nickname)
+					.where("nickname", "==", this.nickname)
 					.get()
 					.then(snapshot => {
-						console.log("Current User:", !!auth.currentUser, 0);
-						const docIDs = [];
+						console.log(snapshot.docs, 2);
+						console.log(auth.currentUser, 3);
 
-						if (auth.currentUser) {
-							snapshot.forEach(doc => {
-								docIDs.push(doc.id);
-							});
+						const docIDs = [];
+						snapshot.forEach(doc => {
+							docIDs.push(doc.id);
+						});
+
+						// If no user with same nickname exists, sign in with predefined signInWithNewNickname function
+						if (!snapshot.docs.length) {
+							this.signInWithNewNickname();
 						}
 
-						// Login if same nickname is not given anywhere elese exept if its the own uid
-						if (
-							!snapshot.docs.length ||
-							(auth.currentUser ? docIDs.includes(auth.currentUser.uid) : false)
-						) {
-							auth.signInAnonymously().catch(error => {
-								console.error(error.code, error.message);
-								this.$validator.errors.add({ field: "nickname", msg: error.message });
-							});
-
-							// FIXME: Sign in with same user doesnt work
-
-							auth.onAuthStateChanged(user => {
-								if (user) {
-									const { uid } = user;
-
-									db.collection("players")
-										.doc(uid)
-										.set({ nickname });
-
-									this.addUserdata({ nickname, uid });
-									console.log("User is signed in with id", uid);
-
-									this.$router.push("create-or-join");
-									this.$wait.end("loadingNext");
-								} else {
-									console.log("User is not signed in (anymore)");
-								}
-							});
-						} else {
-							this.$validator.errors.add({
-								field: "nickname",
-								msg: "Nickname already assigned to another Player.",
-							});
+						// If nickname is in database and uid is the same,
+						if (snapshot.docs.length && docIDs.includes(auth.currentUser.uid)) {
+							console.log("object");
 						}
 					})
 					.catch(err => {
-						console.error(err);
+						console.error("Case 2", err);
 					});
+			} else {
+				console.error("Case 1");
 			}
+		},
+		signInWithNewNickname() {
+			// ...
 		},
 		...mapActions(["addUserdata"]),
 	},
