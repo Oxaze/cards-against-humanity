@@ -53,40 +53,55 @@ export default {
 		return { nickname: null };
 	},
 	methods: {
-		signInUser() {
+		async signInUser() {
 			if (!this.errors.has("nickname") && this.nickname) {
-				// Search for already existing players with same nickname
+				const nicknameIsInDatabase = await this.isNicknameInDatabase();
+				console.log(nicknameIsInDatabase, 2);
+				// Is username already in database?
+				if (nicknameIsInDatabase) {
+					// Username is in database, throw error in simple version
+					this.$validator.errors.add({
+						field: "nickname",
+						msg: "Nickname already assigned to another Player.",
+					});
+					console.error("Error 2");
+					debugger;
+				}
+
+				if (!nicknameIsInDatabase) {
+					// Username is not in database, sign in
+					auth
+						.signInAnonymously()
+						.then(s => {
+							console.log("uid2", s.user.uid);
+							// TODO: Add this.$wait.end & this.addUserdata
+							this.$router.push("create-or-join");
+						})
+						.catch(error => {
+							console.error("Error 3", error.code, error.message);
+							this.$validator.errors.add({ field: "nickname", msg: error.message });
+							debugger;
+						});
+				}
+			} else {
+				console.error("Error 1");
+				debugger;
+			}
+		},
+		isNicknameInDatabase() {
+			return new Promise((resolve, reject) => {
 				db.collection("players")
 					.where("nickname", "==", this.nickname)
 					.get()
 					.then(snapshot => {
-						console.log(snapshot.docs, 2);
-						console.log(auth.currentUser, 3);
-
-						const docIDs = [];
-						snapshot.forEach(doc => {
-							docIDs.push(doc.id);
-						});
-
-						// If no user with same nickname exists, sign in with predefined signInWithNewNickname function
-						if (!snapshot.docs.length) {
-							this.signInWithNewNickname();
-						}
-
-						// If nickname is in database and uid is the same,
-						if (snapshot.docs.length && docIDs.includes(auth.currentUser.uid)) {
-							console.log("object");
-						}
+						resolve(!!snapshot.docs.length);
 					})
 					.catch(err => {
 						console.error("Case 2", err);
+						reject(err);
+						debugger;
 					});
-			} else {
-				console.error("Case 1");
-			}
-		},
-		signInWithNewNickname() {
-			// ...
+			});
 		},
 		...mapActions(["addUserdata"]),
 	},
