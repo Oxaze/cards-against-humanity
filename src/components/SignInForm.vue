@@ -64,18 +64,27 @@ export default {
 						field: "nickname",
 						msg: "Nickname already assigned to another Player.",
 					});
-					console.error("Error 2");
-					debugger;
 				}
 
 				if (!nicknameIsInDatabase) {
 					// Username is not in database, sign in
 					auth
 						.signInAnonymously()
-						.then(s => {
-							console.log("uid2", s.user.uid);
-							// TODO: Add this.$wait.end & this.addUserdata
+						.then(ref => {
+							const { uid } = ref.user;
+							const { nickname } = this;
+							console.log("user.uid", uid);
+							console.log("this.nickname", nickname);
+
+							db.collection("players")
+								.doc(uid)
+								.set({ nickname });
+
+							debugger;
+							this.addUserdata({ nickname, uid });
+							console.log("asfasf");
 							this.$router.push("create-or-join");
+							console.log(457);
 						})
 						.catch(error => {
 							console.error("Error 3", error.code, error.message);

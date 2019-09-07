@@ -7,19 +7,50 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-import { auth } from "@/firebase.js";
+import { mapState, mapMutations } from "vuex";
+import { auth, db } from "@/firebase.js";
 
 export default {
 	name: "SignOutFrom",
 	methods: {
-		signOutUser() {
+		async signOutUser() {
 			auth.currentUser.delete();
-			console.log("User delted", auth.currentUser);
+			const x = await this.user().nickname;
+			console.log(54, "User delted", auth.currentUser);
+			console.log(x, 65);
 
-			this.SET_TAB("CreateOrJoinSwitch");
+			db.collection("players")
+				.where("nickname", "==", this.user().nickname)
+				.get()
+				.then(snapshot => {
+					console.log(!!snapshot.docs.length);
+					if (snapshot.docs.length) {
+						snapshot.forEach(doc => {
+							console.log(doc);
+							doc.ref
+								.delete()
+								.then(() => {
+									console.log("User deleted", 4);
+								})
+								.catch(err => {
+									console.error(err);
+									debugger;
+								});
+						});
+					} else {
+						console.error("User has to be in database in order to delte him");
+					}
+				})
+				.catch(err => {
+					console.error(err);
+					debugger;
+				});
+
+			// Not necessary due to router listener:
+			// this.SET_TAB("CreateOrJoinSwitch");
 			this.DELETE_USER();
 		},
+		...mapState(["user"]),
 		...mapMutations(["SET_TAB", "DELETE_USER"]),
 	},
 };
