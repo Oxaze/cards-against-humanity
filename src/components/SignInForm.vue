@@ -55,10 +55,12 @@ export default {
 	methods: {
 		async signInUser() {
 			if (!this.errors.has("nickname") && this.nickname) {
+				this.$wait.start("loadingNext");
 				const nicknameIsInDatabase = await this.isNicknameInDatabase();
-				console.log(nicknameIsInDatabase, 2);
+
 				// Is username already in database?
 				if (nicknameIsInDatabase) {
+					this.$wait.end("loadingNext");
 					// Username is in database, throw error in simple version
 					this.$validator.errors.add({
 						field: "nickname",
@@ -73,28 +75,25 @@ export default {
 						.then(ref => {
 							const { uid } = ref.user;
 							const { nickname } = this;
-							console.log("user.uid", uid);
-							console.log("this.nickname", nickname);
 
 							db.collection("players")
 								.doc(uid)
 								.set({ nickname });
 
-							debugger;
+							console.log("User is signed in with ID", uid);
 							this.addUserdata({ nickname, uid });
-							console.log("asfasf");
 							this.$router.push("create-or-join");
-							console.log(457);
+
+							this.$wait.end("loadingNext");
 						})
 						.catch(error => {
+							this.$wait.end("loadingNext");
 							console.error("Error 3", error.code, error.message);
 							this.$validator.errors.add({ field: "nickname", msg: error.message });
-							debugger;
 						});
 				}
 			} else {
 				console.error("Error 1");
-				debugger;
 			}
 		},
 		isNicknameInDatabase() {
