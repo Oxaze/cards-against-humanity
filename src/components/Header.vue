@@ -1,7 +1,9 @@
 <template>
-	<header class="header">
+	<header class="site-header">
 		<h1>
-			<router-link class="header__text" :to="{ path: '/' }">Cards Against Humanity</router-link>
+			<router-link class="site-header__text" :to="{ path: '/' }"
+				>Cards Against Humanity</router-link
+			>
 		</h1>
 	</header>
 </template>

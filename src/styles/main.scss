@@ -63,13 +63,13 @@ body {
 
 // Header
 
-.header {
+.site-header {
 	text-align: center;
 	padding: 1rem 0;
 	width: 100%;
 }
 
-.header__text {
+.site-header__text {
 	color: $color-primary;
 	text-decoration: none;
 	display: inline;
@@ -96,39 +96,72 @@ body {
 	color: $color-white;
 }
 
-// Card
-
-.card {
-	background-color: $color-light-grey;
-	color: $color-black;
-	// Verhältniss 4:5
-	height: 20rem;
-	width: 16rem;
-	padding: 1rem 1.5rem;
-	border-radius: $border-radius;
-	// margin-bottom: 2.5rem;
+.czar-header {
+	text-align: center;
+	// padding: 1rem;
+	padding: 0.5rem 1rem 1rem 0.5rem;
+	width: 100%;
+	font-family: "Montserrat", Helvetica, Arial, sans-serif;
+	color: $color-primary;
 }
 
-.card--white {
-	background-color: $color-white;
+// .czar-header__text {
+// 	color: $color-primary;
+// 	responsive-font-size: 1.9rem;
+// }
+
+// .czar-header__text__link {
+// 	responsive-font-size: 2.5rem;
+// 	text-decoration: none;
+// 	display: inline;
+// 	background-image: linear-gradient(
+// 		transparent 0%,
+// 		transparent 65%,
+// 		$color-secondary 65%,
+// 		$color-secondary 90%,
+// 		transparent 90%,
+// 		transparent
+// 	);
+// }
+
+.czar-header__text {
+	responsive-font-size: 1.9rem;
+	margin-right: -8rem;
 }
 
-// Picker
-
-.picker {
-	background-color: $color-black;
-	color: $color-white;
-	border-bottom-left-radius: $border-radius;
+.czar-header__name {
+	responsive-font-size: 2.5rem;
+	text-decoration: none;
+	display: inline;
+	margin-left: -4rem;
+	background-image: linear-gradient(
+		transparent 0%,
+		transparent 65%,
+		$color-secondary 65%,
+		$color-secondary 90%,
+		transparent 90%,
+		transparent
+	);
 }
 
-.picker__statement {
-	box-shadow: 2px 0 6px 0 hsla(0, 0%, 0%, 0.2);
+.separator {
+	width: 80%;
+	margin: 0 auto;
+	border: 0;
+	height: 1px;
+	background: $color-grey;
+	background-image: linear-gradient(
+		to right,
+		$color-light-grey,
+		$color-grey,
+		$color-light-grey
+	);
 }
 
 // Scoreboard
 
 .scoreboard {
-	margin: 2.5rem 1.5rem;
+	margin: 1.5rem;
 }
 
 .scoreboard__item {
@@ -147,6 +180,35 @@ body {
 .icon-star {
 	mask: url("./../assets/icons/star-full.svg");
 	background: $color-yellow;
+}
+
+// Picker
+
+.picker {
+	background-color: $color-black;
+	color: $color-white;
+	// border-bottom-left-radius: $border-radius;
+}
+
+.picker__statement {
+	box-shadow: 2px 0 6px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+// Card
+
+.card {
+	background-color: $color-light-grey;
+	color: $color-black;
+	// Verhältniss 4:5
+	height: 20rem;
+	width: 16rem;
+	padding: 1rem 1.5rem;
+	border-radius: $border-radius;
+	// margin-bottom: 2.5rem;
+}
+
+.card--white {
+	background-color: $color-white;
 }
 
 // Footer

@@ -1,8 +1,10 @@
 <template>
 	<div class="room-wrapper">
 		<aside class="aside">
-			<!-- If true: -->
-			<div class="role"><h4>You are Czar!</h4></div>
+			<!-- <div class="role"><h4>You are Czar!</h4></div> -->
+			<CzarDisplay name="LeSupper"></CzarDisplay>
+
+			<hr class="separator" />
 
 			<ul class="scoreboard">
 				<li class="scoreboard__item">
@@ -11,11 +13,6 @@
 				</li>
 				<li class="scoreboard__item">
 					<p>
-						<!-- TODO: Add http://www.zondicons.com/ -->
-						<!-- <img src="./../assets/icons/star-full.svg" alt="Star Icon" class="svg-tooltip" /> -->
-						<!-- <svg class="svg-tooltip" aria-hidden="true" focusable="false">
-							<use xlink:href="./../assets/icons/icons.svg#star"></use>
-						</svg> -->
 						<span class="icon icon-star"></span>
 						Orange
 					</p>
@@ -68,12 +65,13 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import CzarDisplay from "@/components/CzarDisplay.vue";
 import Card from "@/components/Card.vue";
 import { db } from "@/firebase.js";
 
 export default {
 	name: "Room",
-	components: { Card },
+	components: { Card, CzarDisplay },
 	data() {
 		return {
 			id: this.$route.params.id,
