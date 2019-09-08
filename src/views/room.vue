@@ -12,11 +12,11 @@
 				<li class="scoreboard__item">
 					<p>
 						<!-- TODO: Add http://www.zondicons.com/ -->
-						<img
-							src="./../assets/icons/baseline-star-24px.svg"
-							alt="Star Icon"
-							class="svg-tooltip"
-						/>
+						<!-- <img src="./../assets/icons/star-full.svg" alt="Star Icon" class="svg-tooltip" /> -->
+						<!-- <svg class="svg-tooltip" aria-hidden="true" focusable="false">
+							<use xlink:href="./../assets/icons/icons.svg#star"></use>
+						</svg> -->
+						<span class="icon icon-star"></span>
 						Orange
 					</p>
 					<h2>7/10</h2>

@@ -118,6 +118,7 @@ body {
 .picker {
 	background-color: $color-black;
 	color: $color-white;
+	border-bottom-left-radius: $border-radius;
 }
 
 .picker__statement {
@@ -134,13 +135,18 @@ body {
 	margin-bottom: 1.5rem;
 }
 
-.svg-tooltip {
+.icon {
 	display: inline-block;
-	color: inherit;
-	cursor: default;
-	height: 18px;
+	width: 17px;
+	height: 17px;
+	mask-size: cover;
 	vertical-align: middle;
-	margin-bottom: 4px;
+	margin-bottom: 3px;
+}
+
+.icon-star {
+	mask: url("./../assets/icons/star-full.svg");
+	background: $color-yellow;
 }
 
 // Footer
