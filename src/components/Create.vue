@@ -87,6 +87,7 @@ export default {
 	// computed: {},
 	methods: {
 		createRoom() {
+			// TODO: Add vue.wait
 			const { roomName, password, maxPlayers } = this;
 			const userRef = this.user().uid ? db.collection("players").doc(this.user().uid) : null;
 			const roomRef = db.collection("rooms").doc();

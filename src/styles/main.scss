@@ -103,26 +103,13 @@ body {
 	width: 100%;
 	font-family: "Montserrat", Helvetica, Arial, sans-serif;
 	color: $color-primary;
+	background: linear-gradient(
+		160deg,
+		$color-primary 0%,
+		$color-primary-sub 35%,
+		transparent 100%
+	);
 }
-
-// .czar-header__text {
-// 	color: $color-primary;
-// 	responsive-font-size: 1.9rem;
-// }
-
-// .czar-header__text__link {
-// 	responsive-font-size: 2.5rem;
-// 	text-decoration: none;
-// 	display: inline;
-// 	background-image: linear-gradient(
-// 		transparent 0%,
-// 		transparent 65%,
-// 		$color-secondary 65%,
-// 		$color-secondary 90%,
-// 		transparent 90%,
-// 		transparent
-// 	);
-// }
 
 .czar-header__text {
 	responsive-font-size: 1.9rem;

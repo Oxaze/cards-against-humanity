@@ -27,6 +27,8 @@
 					<h2>6/10</h2>
 				</li>
 			</ul>
+
+			<!-- TODO: Add chat -->
 		</aside>
 		<main class="main">
 			<div class="picker">

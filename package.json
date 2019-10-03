@@ -12,13 +12,15 @@
     "core-js": "^2.6.5",
     "epic-spinners": "^1.1.0",
     "firebase": "^5.9.4",
+    "now": "^16.2.0",
     "rfs": "^8.0.4",
     "vee-validate": "^2.2.5",
     "vue": "^2.6.10",
     "vue-nprogress": "^0.1.5",
     "vue-router": "^3.0.3",
     "vue-wait": "^1.3.3",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-persist": "^2.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",

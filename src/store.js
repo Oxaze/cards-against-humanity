@@ -1,6 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
-// import { db } from "./firebase";
+import VuexPersistence from "vuex-persist";
+
+const vuexPersist = new VuexPersistence({
+	storage: window.localStorage,
+	reducer: state => ({ user: state.user, room: state.room }),
+});
 
 Vue.use(Vuex);
 
@@ -48,4 +53,5 @@ export default new Vuex.Store({
 		},
 	},
 	getters: {},
+	plugins: [vuexPersist.plugin],
 });
