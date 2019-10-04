@@ -6,6 +6,12 @@
 
 			<!-- <hr class="separator" /> -->
 
+			<div v-if="userIsOwner && !gameIsStarted" class="start-game-wrapper">
+				<form @submit.prevent="startGame" class="form">
+					<button type="submit" class="btn btn--primary">Start Game</button>
+				</form>
+			</div>
+
 			<ul class="scoreboard">
 				<li class="scoreboard__item">
 					<p>LeSupper</p>
@@ -33,7 +39,7 @@
 		<main class="main">
 			<div class="picker">
 				<div class="picker__statement">
-					<h3 v-on:click="toto">
+					<h3>
 						In 1.000 Jahren, wenn Papiergeld nur eine entfernte Erinnerung ist, wird ______ unsere
 						Währung sein.
 					</h3>
@@ -78,19 +84,50 @@ export default {
 		return {
 			id: this.$route.params.id,
 			players: [],
+			userIsOwner: null,
+			gameIsStarted: null,
 		};
 	},
-	// created() {},
+	created() {
+		this.getOwner();
+	},
 	// computed: {},
 	methods: {
 		// ...mapState("user.uid");
-		...mapState(["room"]),
-		toto() {
-			console.log("object");
-			console.log(this.room(), true);
+		...mapState(["room", "user"]),
+		getOwner() {
 			db.collection("rooms")
 				.doc(this.room().id)
-				.update({ started: true });
+				.get()
+				.then(doc => {
+					const ownerID = doc.data().owner.id;
+					const userID = this.user().uid;
+
+					if (ownerID === userID) {
+						this.userIsOwner = true;
+					}
+
+					this.gameIsStarted = doc.data().started;
+				})
+				.catch(err => {
+					console.error(err);
+				});
+		},
+		startGame() {
+			if (this.userIsOwner && !this.gameIsStarted) {
+				db.collection("rooms")
+					.doc(this.room().id)
+					.update({ started: true })
+					.then(() => {
+						this.gameIsStarted = true;
+						console.log("Started game successfully.");
+					})
+					.catch(err => {
+						console.error("Failed starting game.");
+					});
+			} else {
+				console.error("User is not the owner, so can not start.");
+			}
 		},
 	},
 };

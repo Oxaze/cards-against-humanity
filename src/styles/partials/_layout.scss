@@ -36,6 +36,11 @@
 	flex: 1;
 }
 
+.start-game-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
 .room-wrapper {
 	display: grid;
 	grid-template-columns: 1fr 4fr;
