@@ -2,7 +2,7 @@
 	<div class="room-wrapper">
 		<aside class="aside">
 			<!-- <div class="role"><h4>You are Czar!</h4></div> -->
-			<CzarDisplay name="LeSupper"></CzarDisplay>
+			<CzarDisplay v-if="gameIsStarted">LeSupper</CzarDisplay>
 
 			<!-- <hr class="separator" /> -->
 

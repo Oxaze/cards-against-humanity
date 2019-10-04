@@ -5,7 +5,7 @@
 			><br />
 			<span style="margin-left: 100px">is Czar</span>
 		</h2> -->
-		<span class="czar-header__name">{{ name }}</span>
+		<span class="czar-header__name"><slot></slot></span>
 		<br />
 		<span class="czar-header__text">is Czar</span>
 	</header>
@@ -14,6 +14,5 @@
 <script>
 export default {
 	name: "CzarDisplay",
-	props: ["name"],
 };
 </script>

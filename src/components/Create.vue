@@ -127,7 +127,12 @@ export default {
 								});
 
 							userRef.update({ room: roomRef });
-							this.addRoomdata(roomRef.id);
+							console.log(roomRef.id);
+
+							const roomID = roomRef.id;
+							const players = [{ uid: this.user().uid, name: this.user().nickname, score: 0 }];
+							this.addRoomdata({ id: roomID, players });
+
 							console.log(`Created Room with ID ${roomRef.id} successfully`);
 
 							this.$router.push(`room/${roomRef.id}`);

@@ -18,7 +18,7 @@ export default new Vuex.Store({
 		currentTab: "",
 		room: {
 			id: "",
-			// ...
+			players: [],
 		},
 	},
 	mutations: {
@@ -28,8 +28,8 @@ export default new Vuex.Store({
 		SET_TAB(state, newTab) {
 			state.currentTab = newTab;
 		},
-		SET_SERVER(state, roomID) {
-			state.room.id = roomID;
+		SET_SERVER(state, server) {
+			state.room = server;
 		},
 		DELETE_USER(state) {
 			state.user.nickname = "";
@@ -44,11 +44,11 @@ export default new Vuex.Store({
 				throw new Error("Either nickname or UID not defined.");
 			}
 		},
-		addRoomdata({ commit }, id) {
-			if (id) {
-				commit("SET_SERVER", id);
+		addRoomdata({ commit }, { id, players }) {
+			if (id && players) {
+				commit("SET_SERVER", { id, players });
 			} else {
-				throw new Error("Room ID not defined.");
+				throw new Error("Either players or room ID not defined.");
 			}
 		},
 	},
