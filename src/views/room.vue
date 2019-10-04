@@ -4,7 +4,7 @@
 			<!-- <div class="role"><h4>You are Czar!</h4></div> -->
 			<CzarDisplay name="LeSupper"></CzarDisplay>
 
-			<hr class="separator" />
+			<!-- <hr class="separator" /> -->
 
 			<ul class="scoreboard">
 				<li class="scoreboard__item">

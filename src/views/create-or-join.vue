@@ -18,6 +18,7 @@ export default {
 		CAHHeader,
 		CreateOrJoinSwitch,
 		Create: () => import("@/components/Create.vue"),
+		Join: () => import("@/components/Join.vue"),
 	},
 	created() {
 		this.SET_TAB("CreateOrJoinSwitch");

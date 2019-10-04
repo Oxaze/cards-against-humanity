@@ -10,9 +10,9 @@ import { mapMutations } from "vuex";
 
 export default {
 	name: "CreateOrJoinSwitch",
-	data() {
-		return {};
-	},
+	// data() {
+	// 	return {};
+	// },
 	// created() {},
 	// computed: {},
 	methods: {
