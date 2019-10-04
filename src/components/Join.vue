@@ -69,7 +69,17 @@ export default {
 						});
 
 					userRef.update({ room: roomRef });
-					this.addRoomdata(roomRef.id);
+
+					const players = [{ uid: this.user().uid, name: this.user().nickname, score: 0 }];
+					roomRef
+						.get()
+						.then(doc => {
+							const a = doc.data().maxPoints;
+							this.addRoomdata({ id: roomID, players, maxPoints: a });
+						})
+						.catch(err => {
+							console.error(err);
+						});
 					console.log(`Joined room with ID ${roomRef.id} successfully`);
 
 					this.$router.push(`room/${roomRef.id}`);

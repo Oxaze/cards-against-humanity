@@ -2,18 +2,18 @@
 	<div class="room-wrapper">
 		<aside class="aside">
 			<!-- <div class="role"><h4>You are Czar!</h4></div> -->
-			<CzarDisplay v-if="gameIsStarted">LeSupper</CzarDisplay>
+			<CzarDisplay v-if="getStarted">LeSupper</CzarDisplay>
 
 			<!-- <hr class="separator" /> -->
 
-			<div v-if="userIsOwner && !gameIsStarted" class="start-game-wrapper">
+			<div v-if="getOwner && !getStarted" class="start-game-wrapper">
 				<form @submit.prevent="startGame" class="form">
 					<button type="submit" class="btn btn--primary">Start Game</button>
 				</form>
 			</div>
 
 			<ul class="scoreboard">
-				<li class="scoreboard__item">
+				<!-- <li class="scoreboard__item">
 					<p>LeSupper</p>
 					<h2>4/10</h2>
 				</li>
@@ -31,6 +31,11 @@
 				<li class="scoreboard__item">
 					<p>Fernandes</p>
 					<h2>6/10</h2>
+				</li> -->
+
+				<li v-for="player in getPlayers" :key="player.name" class="scoreboard__item">
+					<p>{{ player.name }}</p>
+					<h2>{{ player.score }}/{{ getMaxPoints }}</h2>
 				</li>
 			</ul>
 
@@ -72,7 +77,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapGetters } from "vuex";
 import CzarDisplay from "@/components/CzarDisplay.vue";
 import Card from "@/components/Card.vue";
 import { db } from "@/firebase.js";
@@ -83,50 +88,37 @@ export default {
 	data() {
 		return {
 			id: this.$route.params.id,
-			players: [],
 			userIsOwner: null,
-			gameIsStarted: null,
 		};
 	},
-	created() {
-		this.getOwner();
+	beforeCreate() {
+		// this.setPlayers();
+		this.$store.dispatch("setRoomdata");
 	},
-	// computed: {},
+	created() {
+		this.checkOwner();
+	},
+	computed: {
+		...mapGetters(["getPlayers", "getMaxPoints", "getOwner", "getStarted"]),
+	},
 	methods: {
-		// ...mapState("user.uid");
+		...mapActions(["setStarted"]),
 		...mapState(["room", "user"]),
-		getOwner() {
-			db.collection("rooms")
-				.doc(this.room().id)
-				.get()
-				.then(doc => {
-					const ownerID = doc.data().owner.id;
-					const userID = this.user().uid;
+		checkOwner() {
+			const ownerID = this.getOwner;
+			const userID = this.user().uid;
 
-					if (ownerID === userID) {
-						this.userIsOwner = true;
-					}
+			if (ownerID === userID) {
+				this.userIsOwner = true;
+			}
 
-					this.gameIsStarted = doc.data().started;
-				})
-				.catch(err => {
-					console.error(err);
-				});
+			console.log(this.userIsOwner, 325);
 		},
 		startGame() {
-			if (this.userIsOwner && !this.gameIsStarted) {
-				db.collection("rooms")
-					.doc(this.room().id)
-					.update({ started: true })
-					.then(() => {
-						this.gameIsStarted = true;
-						console.log("Started game successfully.");
-					})
-					.catch(err => {
-						console.error("Failed starting game.");
-					});
+			if (this.getOwner && !this.getStarted) {
+				this.setStarted(true);
 			} else {
-				console.error("User is not the owner, so can not start.");
+				console.error("User is not the owner or game already started.");
 			}
 		},
 	},

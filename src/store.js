@@ -1,9 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
+import { db } from "./firebase";
 
 const vuexPersist = new VuexPersistence({
-	storage: window.localStorage,
 	reducer: state => ({ user: state.user, room: state.room }),
 });
 
@@ -19,6 +19,9 @@ export default new Vuex.Store({
 		room: {
 			id: "",
 			players: [],
+			maxPoints: null,
+			owner: null,
+			started: null,
 		},
 	},
 	mutations: {
@@ -28,8 +31,41 @@ export default new Vuex.Store({
 		SET_TAB(state, newTab) {
 			state.currentTab = newTab;
 		},
-		SET_SERVER(state, server) {
-			state.room = server;
+		SET_ROOM(state, room) {
+			state.room = room;
+		},
+		SET_ROOM_PLAYERS(state) {
+			let players = [];
+
+			db.collection(`rooms/${state.room.id}/players`).onSnapshot(snapshot => {
+				players = [];
+				snapshot.forEach(doc => {
+					players.push({
+						name: doc.data().name,
+						score: doc.data().score,
+						isCzar: doc.data().isCzar,
+						uid: doc.id,
+					});
+				});
+
+				state.room.players = players;
+			});
+		},
+		SET_ROOM_METADATA(state) {
+			db.collection("rooms")
+				.doc(state.room.id)
+				.get()
+				.then(doc => {
+					state.room.maxPoints = doc.data().maxPoints;
+					state.room.owner = doc.data().owner.id;
+					state.room.started = doc.data().started;
+				})
+				.catch(err => {
+					console.error(err);
+				});
+		},
+		SET_ROOM_STARTED(state, bool) {
+			state.room.started = bool;
 		},
 		DELETE_USER(state) {
 			state.user.nickname = "";
@@ -44,14 +80,47 @@ export default new Vuex.Store({
 				throw new Error("Either nickname or UID not defined.");
 			}
 		},
-		addRoomdata({ commit }, { id, players }) {
-			if (id && players) {
-				commit("SET_SERVER", { id, players });
+		addRoomdata({ commit }, { id }) {
+			if (id) {
+				commit("SET_ROOM", { id });
 			} else {
-				throw new Error("Either players or room ID not defined.");
+				throw new Error("Room ID not defined.");
+			}
+		},
+		setRoomdata({ commit }) {
+			commit("SET_ROOM_PLAYERS");
+			commit("SET_ROOM_METADATA");
+		},
+		setStarted({ commit, state }, bool) {
+			if (typeof bool === "boolean") {
+				db.collection("rooms")
+					.doc(state.room.id)
+					.update({ started: true })
+					.then(() => {
+						commit("SET_ROOM_STARTED", bool);
+						console.log("Started game successfully.");
+					})
+					.catch(err => {
+						console.error(err);
+					});
+			} else {
+				throw new Error("Argument is not a boolean.");
 			}
 		},
 	},
-	getters: {},
+	getters: {
+		getPlayers(state) {
+			return state.room.players;
+		},
+		getMaxPoints(state) {
+			return state.room.maxPoints;
+		},
+		getOwner(state) {
+			return state.room.owner;
+		},
+		getStarted(state) {
+			return state.room.started;
+		},
+	},
 	plugins: [vuexPersist.plugin],
 });

@@ -106,14 +106,16 @@ export default {
 					.then(snapshot => {
 						if (!snapshot.docs.length && userRef) {
 							// Set initial room data
+							// TODO: Make maxPoints customizable
 							roomRef.set({
 								name: roomName,
 								password,
-								maxPlayers,
+								maxPlayers: parseInt(maxPlayers),
 								owner: userRef,
 								started: false,
 								czar: null,
 								locked: false,
+								maxPoints: 15,
 							});
 
 							// Add player to room data
@@ -126,12 +128,10 @@ export default {
 									score: 0,
 								});
 
+							// Add room to player information
 							userRef.update({ room: roomRef });
-							console.log(roomRef.id);
 
-							const roomID = roomRef.id;
-							const players = [{ uid: this.user().uid, name: this.user().nickname, score: 0 }];
-							this.addRoomdata({ id: roomID, players });
+							this.addRoomdata({ id: roomRef.id });
 
 							console.log(`Created Room with ID ${roomRef.id} successfully`);
 
