@@ -97,7 +97,7 @@ body {
 }
 
 .czar-header {
-	text-align: center;
+	// text-align: center;
 	// padding: 1rem;
 	padding: 1rem 1rem 0.5rem 1rem;
 	width: 100%;
@@ -105,20 +105,21 @@ body {
 	color: $color-primary;
 	background: $color-light-grey;
 	background: linear-gradient(180deg, $color-light-grey 0%, transparent 100%);
-	line-height: 2.5rem;
 }
 
 .czar-header__text {
 	responsive-font-size: 1.9rem;
-	margin-right: -8rem;
-	line-height: initial;
+	// margin-right: -8rem;
+}
+
+.czar-header__text__wrapper {
+	text-align: right;
 }
 
 .czar-header__name {
 	responsive-font-size: 2.5rem;
 	text-decoration: none;
-	display: inline;
-	margin-left: -3.5rem;
+	// margin-left: -3.5rem;
 	background-image: linear-gradient(
 		transparent 0%,
 		transparent 65%,
@@ -127,7 +128,6 @@ body {
 		transparent 90%,
 		transparent
 	);
-	line-height: initial;
 }
 
 .separator {

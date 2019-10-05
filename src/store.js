@@ -56,7 +56,11 @@ export default new Vuex.Store({
 				.doc(router.currentRoute.params.id)
 				.onSnapshot(doc => {
 					// Change to be real data
-					state.room.czar = doc.data().czar ? doc.data().czar.data().name : "Deine Mudda";
+					state.room.czar = doc.data().czar
+						? state.room.players
+								.filter(player => player.uid === doc.data().czar.id)
+								.map(player => player.name)[0]
+						: "LeSupper";
 					state.room.started = doc.data().started;
 				});
 		},
