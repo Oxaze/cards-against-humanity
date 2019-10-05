@@ -2,7 +2,7 @@
 	<div class="room-wrapper">
 		<aside class="aside">
 			<!-- <div class="role"><h4>You are Czar!</h4></div> -->
-			<CzarDisplay v-if="getStarted">LeSupper</CzarDisplay>
+			<CzarDisplay v-if="getStarted">{{ getCzar }}</CzarDisplay>
 
 			<!-- <hr class="separator" /> -->
 
@@ -95,7 +95,7 @@ export default {
 		this.$store.dispatch("setRoomdata");
 	},
 	computed: {
-		...mapGetters(["getPlayers", "getMaxPoints", "getUserIsOwner", "getStarted"]),
+		...mapGetters(["getPlayers", "getMaxPoints", "getUserIsOwner", "getStarted", "getCzar"]),
 	},
 	methods: {
 		...mapActions(["setStarted", "setRoomdata"]),

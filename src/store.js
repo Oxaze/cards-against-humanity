@@ -23,6 +23,7 @@ export default new Vuex.Store({
 			maxPoints: null,
 			owner: null,
 			started: null,
+			czar: null,
 		},
 	},
 	mutations: {
@@ -35,7 +36,7 @@ export default new Vuex.Store({
 		SET_ROOM(state, room) {
 			state.room = room;
 		},
-		SET_ROOM_PLAYERS(state) {
+		SET_ROOM_REALTIMEDATA(state) {
 			let players = [];
 
 			db.collection(`rooms/${router.currentRoute.params.id}/players`).onSnapshot(snapshot => {
@@ -50,6 +51,14 @@ export default new Vuex.Store({
 				});
 				state.room.players = players;
 			});
+
+			db.collection("rooms")
+				.doc(router.currentRoute.params.id)
+				.onSnapshot(doc => {
+					// Change to be real data
+					state.room.czar = doc.data().czar ? doc.data().czar.data().name : "Deine Mudda";
+					state.room.started = doc.data().started;
+				});
 		},
 		SET_ROOM_METADATA(state) {
 			db.collection("rooms")
@@ -58,7 +67,6 @@ export default new Vuex.Store({
 				.then(doc => {
 					state.room.maxPoints = doc.data().maxPoints;
 					state.room.owner = doc.data().owner.id;
-					state.room.started = doc.data().started;
 					state.room.id = doc.id;
 				})
 				.catch(err => {
@@ -89,7 +97,7 @@ export default new Vuex.Store({
 			}
 		},
 		setRoomdata({ commit }) {
-			commit("SET_ROOM_PLAYERS");
+			commit("SET_ROOM_REALTIMEDATA");
 			commit("SET_ROOM_METADATA");
 		},
 		setStarted({ commit, state }, bool) {
@@ -121,6 +129,9 @@ export default new Vuex.Store({
 		},
 		getStarted(state) {
 			return state.room.started;
+		},
+		getCzar(state) {
+			return state.room.czar;
 		},
 	},
 	plugins: [vuexPersist.plugin],
