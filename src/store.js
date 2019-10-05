@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersistence from "vuex-persist";
+import router from "./router";
 import { db } from "./firebase";
 
 const vuexPersist = new VuexPersistence({
@@ -37,7 +38,7 @@ export default new Vuex.Store({
 		SET_ROOM_PLAYERS(state) {
 			let players = [];
 
-			db.collection(`rooms/${state.room.id}/players`).onSnapshot(snapshot => {
+			db.collection(`rooms/${router.currentRoute.params.id}/players`).onSnapshot(snapshot => {
 				players = [];
 				snapshot.forEach(doc => {
 					players.push({
@@ -47,18 +48,18 @@ export default new Vuex.Store({
 						uid: doc.id,
 					});
 				});
-
 				state.room.players = players;
 			});
 		},
 		SET_ROOM_METADATA(state) {
 			db.collection("rooms")
-				.doc(state.room.id)
+				.doc(router.currentRoute.params.id)
 				.get()
 				.then(doc => {
 					state.room.maxPoints = doc.data().maxPoints;
 					state.room.owner = doc.data().owner.id;
 					state.room.started = doc.data().started;
+					state.room.id = doc.id;
 				})
 				.catch(err => {
 					console.error(err);
@@ -115,8 +116,8 @@ export default new Vuex.Store({
 		getMaxPoints(state) {
 			return state.room.maxPoints;
 		},
-		getOwner(state) {
-			return state.room.owner;
+		getUserIsOwner(state) {
+			return state.room.owner === state.user.uid;
 		},
 		getStarted(state) {
 			return state.room.started;

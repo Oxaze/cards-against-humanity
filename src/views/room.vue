@@ -6,7 +6,7 @@
 
 			<!-- <hr class="separator" /> -->
 
-			<div v-if="getOwner && !getStarted" class="start-game-wrapper">
+			<div v-if="getUserIsOwner && !getStarted" class="start-game-wrapper">
 				<form @submit.prevent="startGame" class="form">
 					<button type="submit" class="btn btn--primary">Start Game</button>
 				</form>
@@ -80,7 +80,6 @@
 import { mapActions, mapState, mapGetters } from "vuex";
 import CzarDisplay from "@/components/CzarDisplay.vue";
 import Card from "@/components/Card.vue";
-import { db } from "@/firebase.js";
 
 export default {
 	name: "Room",
@@ -95,27 +94,14 @@ export default {
 		// this.setPlayers();
 		this.$store.dispatch("setRoomdata");
 	},
-	created() {
-		this.checkOwner();
-	},
 	computed: {
-		...mapGetters(["getPlayers", "getMaxPoints", "getOwner", "getStarted"]),
+		...mapGetters(["getPlayers", "getMaxPoints", "getUserIsOwner", "getStarted"]),
 	},
 	methods: {
-		...mapActions(["setStarted"]),
+		...mapActions(["setStarted", "setRoomdata"]),
 		...mapState(["room", "user"]),
-		checkOwner() {
-			const ownerID = this.getOwner;
-			const userID = this.user().uid;
-
-			if (ownerID === userID) {
-				this.userIsOwner = true;
-			}
-
-			console.log(this.userIsOwner, 325);
-		},
 		startGame() {
-			if (this.getOwner && !this.getStarted) {
+			if (this.getUserIsOwner && !this.getStarted) {
 				this.setStarted(true);
 			} else {
 				console.error("User is not the owner or game already started.");

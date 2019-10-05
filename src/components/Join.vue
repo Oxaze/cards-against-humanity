@@ -49,15 +49,6 @@ export default {
 				: null;
 
 			if (!this.errors.has("roomID") && roomID) {
-				roomRef
-					.collection("players")
-					.doc(this.user().uid)
-					.set({
-						isCzar: false,
-						name: this.user().nickname,
-						score: 0,
-					});
-
 				if (roomRef && userRef) {
 					roomRef
 						.collection("players")
@@ -70,16 +61,8 @@ export default {
 
 					userRef.update({ room: roomRef });
 
-					const players = [{ uid: this.user().uid, name: this.user().nickname, score: 0 }];
-					roomRef
-						.get()
-						.then(doc => {
-							const a = doc.data().maxPoints;
-							this.addRoomdata({ id: roomID, players, maxPoints: a });
-						})
-						.catch(err => {
-							console.error(err);
-						});
+					// Get Room information
+
 					console.log(`Joined room with ID ${roomRef.id} successfully`);
 
 					this.$router.push(`room/${roomRef.id}`);
@@ -97,7 +80,6 @@ export default {
 			}
 		},
 		...mapState(["user"]),
-		...mapActions(["addRoomdata"]),
 	},
 };
 </script>

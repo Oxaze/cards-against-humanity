@@ -131,8 +131,6 @@ export default {
 							// Add room to player information
 							userRef.update({ room: roomRef });
 
-							this.addRoomdata({ id: roomRef.id });
-
 							console.log(`Created Room with ID ${roomRef.id} successfully`);
 
 							this.$router.push(`room/${roomRef.id}`);
@@ -154,7 +152,6 @@ export default {
 			}
 		},
 		...mapState(["user"]),
-		...mapActions(["addRoomdata"]),
 	},
 };
 </script>
