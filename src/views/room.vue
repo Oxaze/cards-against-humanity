@@ -1,10 +1,7 @@
 <template>
 	<div class="room-wrapper">
 		<aside class="aside">
-			<!-- <div class="role"><h4>You are Czar!</h4></div> -->
 			<CzarDisplay v-if="getStarted" v-cloak>{{ getCzar }}</CzarDisplay>
-
-			<!-- <hr class="separator" /> -->
 
 			<div v-if="getUserIsOwner && !getStarted" class="start-game-wrapper">
 				<form @submit.prevent="startGame" class="form">

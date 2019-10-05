@@ -69,6 +69,8 @@ export default new Vuex.Store({
 				.doc(router.currentRoute.params.id)
 				.get()
 				.then(doc => {
+					// console.log(doc, 1);
+					// console.log(router.currentRoute.params.id, 2);
 					state.room.maxPoints = doc.data().maxPoints;
 					state.room.owner = doc.data().owner.id;
 					state.room.id = doc.id;
