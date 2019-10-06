@@ -12,6 +12,9 @@
 <script>
 export default {
 	name: "CzarDisplay",
+	mounted() {
+		this.nameMargin();
+	},
 	updated() {
 		this.nameMargin();
 	},
@@ -26,12 +29,10 @@ export default {
 				.paddingRight;
 
 			document.querySelector(".czar-header__name__wrapper").style.paddingLeft = `${
-				numA !== 8 ? numA : document.querySelector(".czar-header__name__wrapper").style.paddingLeft
+				numA !== 8 ? numA : nameWrapperPaddingLeft
 			}rem`;
 			document.querySelector(".czar-header__text__wrapper").style.paddingRight = `${
-				numB !== 6.73
-					? numB
-					: document.querySelector(".czar-header__text__wrapper").style.paddingRight
+				numB !== 6.73 ? numB : textWrapperPaddingRight
 			}rem`;
 		},
 	},

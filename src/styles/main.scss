@@ -81,6 +81,21 @@ body {
 		transparent 90%,
 		transparent
 	);
+	transition: background-image $duration-short $standard-easing;
+	&:focus {
+		// outline: 0.2rem dotted $color-light-grey;
+		// outline-offset: $border-radius;
+		outline: none;
+		color: $color-primary;
+		background-image: linear-gradient(
+			transparent 0%,
+			transparent 65%,
+			$color-light-grey 65%,
+			$color-light-grey 90%,
+			transparent 90%,
+			transparent
+		);
+	}
 }
 
 // Aside

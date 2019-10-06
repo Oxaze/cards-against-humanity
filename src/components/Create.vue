@@ -65,6 +65,28 @@
 				</transition>
 			</div>
 
+			<br />
+
+			<div class="form__input-group">
+				<input
+					v-model="maxPoints"
+					type="number"
+					autocomplete="off"
+					spellcheck="false"
+					required
+					name="maxPlayers"
+					v-validate="'required|decimal|max_value:100|min_value:1'"
+					id="maxPoints"
+					class="form__input form__input--primary"
+				/>
+				<label for="maxPlayers" class="form__lable">Maximal Points</label>
+				<transition name="error-message__transition">
+					<span class="error-message" v-if="errors.has('maxPoints')">{{
+						errors.first("maxPoints")
+					}}</span>
+				</transition>
+			</div>
+
 			<button type="submit" class="btn btn--secondary">Create Room</button>
 		</form>
 	</div>
@@ -81,6 +103,7 @@ export default {
 			roomName: null,
 			password: null,
 			maxPlayers: null,
+			maxPoints: null,
 		};
 	},
 	// created() {},
@@ -88,7 +111,7 @@ export default {
 	methods: {
 		createRoom() {
 			// TODO: Add vue.wait
-			const { roomName, password, maxPlayers } = this;
+			const { roomName, password, maxPlayers, maxPoints } = this;
 			const userRef = this.user().uid ? db.collection("players").doc(this.user().uid) : null;
 			const roomRef = db.collection("rooms").doc();
 
@@ -96,9 +119,11 @@ export default {
 				!this.errors.has("roomName") &&
 				!this.errors.has("password") &&
 				!this.errors.has("maxPlayers") &&
+				!this.errors.has("maxPoints") &&
 				roomName &&
 				password &&
-				maxPlayers
+				maxPlayers &&
+				maxPoints
 			) {
 				db.collection("rooms")
 					.where("name", "==", roomName)
@@ -115,7 +140,7 @@ export default {
 								started: false,
 								czar: null,
 								locked: false,
-								maxPoints: 15,
+								maxPoints: parseInt(maxPoints),
 							});
 
 							// Add player to room data
