@@ -1,5 +1,11 @@
 <template>
 	<div class="sign-in-wrapper">
+		<div class="back-button__wrapper">
+			<button class="btn-back" @click="changeTab()">
+				<span class="icon-back icon-arrow-left"></span>
+			</button>
+		</div>
+
 		<form @submit.prevent="createRoom" class="form">
 			<div class="form__input-group">
 				<input
@@ -93,7 +99,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import { db } from "@/firebase.js";
 
 export default {
@@ -176,7 +182,11 @@ export default {
 					});
 			}
 		},
+		changeTab() {
+			this.SET_TAB("CreateOrJoinSwitch");
+		},
 		...mapState(["user"]),
+		...mapMutations(["SET_TAB"]),
 	},
 };
 </script>

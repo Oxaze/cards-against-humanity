@@ -1,6 +1,7 @@
 <template>
 	<div class="sign-in-wrapper">
-		<v-wait for="loadingNext" style="height: 100%">
+		<!-- <v-wait for="loadingNext" style="height: 100%"> -->
+		<v-wait for="loadingNext">
 			<template slot="waiting">
 				<div class="spinner">
 					<hollow-dots-spinner
