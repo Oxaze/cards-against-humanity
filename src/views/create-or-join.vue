@@ -1,6 +1,7 @@
 <template>
 	<div class="main-wrapper">
 		<CAHHeader></CAHHeader>
+		
 		<keep-alive>
 			<component v-bind:is="currentTab()"></component>
 		</keep-alive>

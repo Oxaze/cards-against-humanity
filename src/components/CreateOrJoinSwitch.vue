@@ -1,7 +1,8 @@
 <template>
 	<div class="create-or-join-wrapper">
-		<button class="btn btn--primary" @click="changeTab('Create')">Create</button>
-		<button class="btn btn--primary" @click="changeTab('Join')">Join</button>
+		<div>		<button class="btn btn--primary" @click="changeTab('Create')" style="margin-bottom: 1.5rem">Create</button>
+		<button class="btn btn--primary" @click="changeTab('Join')">Join</button></div>
+
 	</div>
 </template>
 

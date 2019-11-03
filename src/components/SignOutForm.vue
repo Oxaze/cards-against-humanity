@@ -44,6 +44,8 @@ export default {
 							doc.ref
 								.delete()
 								.then(() => {
+									this.$router.go();
+
 									this.$wait.end("loadingNext");
 								})
 								.catch(err => {
