@@ -54,7 +54,6 @@ export default {
 						.collection("players")
 						.doc(this.user().uid)
 						.set({
-							isCzar: false,
 							name: this.user().nickname,
 							score: 0,
 						});

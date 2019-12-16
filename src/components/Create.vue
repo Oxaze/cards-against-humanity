@@ -3,6 +3,7 @@
 		<div class="back-button__wrapper">
 			<button class="btn-back" @click="changeTab()">
 				<span class="icon-back icon-arrow-left"></span>
+				Zurück
 			</button>
 		</div>
 
@@ -112,9 +113,25 @@ export default {
 			maxPoints: null,
 		};
 	},
-	// created() {},
+	mounted() {
+		this.inputFocusListener()
+	},
 	// computed: {},
 	methods: {
+		inputFocusListener() {
+			const inputEl = document.querySelector(".form__input--primary");
+			const buttonEl = document.querySelector(".back-button__wrapper");
+			inputEl.addEventListener("focus", () => {
+				buttonEl.classList.add("back-button__wrapper__margin");
+			})
+			inputEl.addEventListener("focusout", () => {
+				buttonEl.classList.remove("back-button__wrapper__margin");
+			})
+			inputEl.addEventListener("change", (el) => {
+				console.log(el.traget.matches(":valid")); ???
+				el.traget.matches(":valid") ? buttonEl.classList.add("back-button__wrapper__margin") : buttonEl.classList.remove("back-button__wrapper__margin");
+			})
+		},
 		createRoom() {
 			// TODO: Add vue.wait
 			const { roomName, password, maxPlayers, maxPoints } = this;
@@ -154,7 +171,6 @@ export default {
 								.collection("players")
 								.doc(this.user().uid)
 								.set({
-									isCzar: false,
 									name: this.user().nickname,
 									score: 0,
 								});

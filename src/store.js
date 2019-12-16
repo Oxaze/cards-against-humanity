@@ -39,7 +39,9 @@ export default new Vuex.Store({
 		SET_ROOM_REALTIMEDATA(state) {
 			let players = [];
 
-			db.collection(`rooms/${router.currentRoute.params.id}/players`).onSnapshot(snapshot => {
+			db.collection(
+				`rooms/${router.currentRoute.params.id}/players`
+			).onSnapshot(snapshot => {
 				players = [];
 				snapshot.forEach(doc => {
 					players.push({
@@ -58,7 +60,7 @@ export default new Vuex.Store({
 					// Change to be real data
 					state.room.czar = doc.data().czar
 						? state.room.players
-								.filter(player => player.uid === doc.data().czar.id)
+								.filter(player => player.uid === doc.data().czar)
 								.map(player => player.name)[0]
 						: "LeSupper";
 					state.room.started = doc.data().started;

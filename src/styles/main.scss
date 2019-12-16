@@ -177,19 +177,23 @@ body {
 .icon-arrow-left {
 	mask: url("./../assets/icons/arrow-left.svg");
 	background: $color-grey;
-	transition: all $duration-short $standard-easing;
 }
 
 .icon-back {
 	display: inline-block;
-	width: 1.5rem;
-	height: 1.5rem;
+	width: 0.875rem;
+	height: 0.875rem;
 	vertical-align: middle;
 	mask-size: cover;
+	margin: 0 0.2rem 4px 0;
 }
 
 .back-button__wrapper {
 	width: 17.5rem;
+	transition: margin-bottom $duration-short $standard-easing;
+}
+
+.back-button__wrapper__margin {
 	margin-bottom: 1.5rem;
 }
 
