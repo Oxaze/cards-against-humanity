@@ -1,0 +1,14 @@
+.card {
+	background-color: var(--color-contrast-low);
+	color: var(--color-contrast-higher);
+	// Verhältniss 4:5
+	height: 20rem;
+	width: 16rem;
+	padding: 1rem 1.5rem;
+	border-radius: var(--border-radius);
+	// margin-bottom: 2.5rem;
+}
+
+.card--white {
+	background-color: var(--color-bg);
+}

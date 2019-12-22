@@ -1,0 +1,57 @@
+.btn {
+	display: block;
+	outline: none;
+	border: none;
+	appearance: none;
+	cursor: pointer;
+	background: transparent;
+	height: 3.5rem;
+	min-width: 17.5rem;
+	font-family: inherit;
+	line-height: var(--base-line-height);
+	font-weight: var(--headings-font-weight);
+	padding: 0 1.2rem;
+	border-radius: var(--border-radius);
+	transition: all var(--duration-short) var(--standard-easing);
+	&:hover {
+		box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.03), 0 0 0.3rem #161616;
+	}
+}
+
+.btn--primary {
+	background-color: var(--color-contrast-higher);
+	color: var(--color-bg);
+	&:focus {
+		// outline: 0.2rem dotted var(--color-contrast-higher);
+		// outline-offset: 0.2rem;
+		border: 0.2rem solid var(--color-contrast-higher);
+		background-color: var(--color-bg);
+		color: var(--color-contrast-higher);
+		box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.03), 0 0 0.3rem #161616;
+	}
+}
+
+.btn--secondary {
+	border: 0.2rem solid var(--color-contrast-higher);
+	text-transform: uppercase;
+	&:focus {
+		border: none;
+		background-color: var(--color-contrast-higher);
+		color: var(--color-bg);
+		box-shadow: inset 0 0 4px 2px rgba(0, 0, 0, 0.03), 0 0 0.3rem #161616;
+	}
+}
+
+.btn-back {
+	display: block;
+	outline: none;
+	border: none;
+	appearance: none;
+	cursor: pointer;
+	background: transparent;
+	height: 3.5rem;
+	font-family: inherit;
+	line-height: var(--base-line-height);
+	font-weight: var(--headings-font-weight);
+	padding: 0 1.2rem;
+}

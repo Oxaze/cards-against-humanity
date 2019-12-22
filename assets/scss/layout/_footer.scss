@@ -1,0 +1,20 @@
+.footer {
+	color: var(--color-contrast-medium);
+	font-size: 0.8em;
+}
+
+.footer__list {
+	margin: 0;
+	padding: 0.5rem;
+	display: flex;
+	align-items: center;
+}
+
+.footer__item {
+	list-style: none;
+	margin-left: 1rem;
+}
+
+.footer__item--first {
+	margin-left: 0;
+}

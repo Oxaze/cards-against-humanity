@@ -1,0 +1,71 @@
+@import "abstracts/variables";
+@import "abstracts/functions";
+@import "abstracts/mixins";
+
+@import "~@zellwk/css-reset/reset";
+
+@import "base/init";
+@import "base/typography";
+
+@import "layout/navigation";
+@import "layout/header";
+@import "layout/aside";
+@import "layout/footer";
+@import "layout/forms";
+
+@import "components/buttons";
+@import "components/card";
+
+// Scoreboard
+
+.scoreboard {
+	margin: 1.5rem;
+}
+
+.scoreboard__item {
+	margin-bottom: 1.5rem;
+}
+
+.icon {
+	display: inline-block;
+	width: 17px;
+	height: 17px;
+	mask-size: cover;
+	vertical-align: middle;
+	margin-bottom: 3px;
+}
+
+.icon-star {
+	mask: url("/icons/star-full.svg");
+	background: var(--color-yellow);
+}
+
+.icon-arrow-left {
+	mask: url("/icons/arrow-left.svg");
+	background: var(--color-contrast-medium);
+	transition: all var(--duration-short) var(--standard-easing);
+}
+
+.icon-back {
+	display: inline-block;
+	width: 1.5rem;
+	height: 1.5rem;
+	vertical-align: middle;
+	mask-size: cover;
+}
+
+.back-button__wrapper {
+	width: 17.5rem;
+	margin-bottom: 1.5rem;
+}
+
+// Picker
+
+.picker {
+	background-color: var(--color-contrast-higher);
+	color: var(--color-bg);
+}
+
+.picker__statement {
+	box-shadow: 2px 0 6px 0 hsla(0, 0%, 0%, 0.2);
+}

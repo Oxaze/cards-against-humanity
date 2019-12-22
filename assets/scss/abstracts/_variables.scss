@@ -1,0 +1,71 @@
+:root,
+[data-theme="default"] {
+	// Colors
+	--color-primary-darker: hsl(231, 48%, 28%);
+	--color-primary-dark: hsl(231, 48%, 38%);
+	--color-primary: hsl(231, 48%, 48%);
+	--color-primary-light: hsl(231, 48%, 58%);
+	--color-primary-lighter: hsl(231, 48%, 68%);
+
+	--color-secondary-darker: hsl(54, 100%, 42%);
+	--color-secondary-dark: hsl(54, 100%, 52%);
+	--color-secondary: hsl(54, 100%, 62%);
+	--color-secondary-light: hsl(54, 100%, 72%);
+	--color-secondary-lighter: hsl(54, 100%, 82%);
+
+	--color-white: hsl(0, 0%, 96%);
+	--color-black: hsl(0, 0%, 9%);
+	--color-red: hsl(1, 98%, 61%);
+	--color-yellow: hsl(47, 81%, 61%);
+
+	--color-bg: hsl(0, 0%, 96%); // background color of the theme in use
+	--color-contrast-lower: hsl(0, 0%, 91%); // low contrast background
+	--color-contrast-low: hsl(0, 0%, 79%); // borders
+	--color-contrast-medium: hsl(0, 0%, 44%); // text subtle
+	--color-contrast-high: hsl(0, 0%, 17%); // text color
+	--color-contrast-higher: hsl(0, 0%, 9%); // text heading color
+
+	// Typography
+	--base-line-height: 1.5;
+	--base-font-weight: 400;
+	--base-font-family: "Roboto", Helvetica, Arial, sans-serif;
+
+	--headings-line-height: 1.3;
+	--headings-font-weight: 700;
+	--headings-font-family: "Roboto", Helvetica, Arial, sans-serif;
+
+	// Animations
+	--duration-long: 375ms;
+	--duration-mid: 230ms;
+	--duration-short: 150ms;
+
+	--standard-easing: cubic-bezier(0.4, 0, 0.2, 1);
+	--deceleration-easing: cubic-bezier(0, 0, 0.2, 1);
+	--acceleration-easing: cubic-bezier(0.4, 0, 1, 1);
+
+	// Miscellaneous
+	--shadow: 0 0.1px 0.3px rgba(0, 0, 0, 0.054),
+		0 0.1px 0.7px rgba(0, 0, 0, 0.08), 0 0.3px 1.3px rgba(0, 0, 0, 0.092),
+		0 0.4px 2.2px rgba(0, 0, 0, 0.097), 0 0.8px 4.2px rgba(0, 0, 0, 0.103),
+		0 2px 10px rgba(0, 0, 0, 0.15);
+
+	--mobile: 768px;
+	--tablet: 992px;
+	--screen: 1200px;
+
+	--border-radius: 0.4rem;
+	--mobile-padding: 1rem;
+	--grid-gap: 2.5rem;
+}
+
+[data-theme="dark"] {
+	// Colors
+	--color-bg: hsl(0, 0%, 9%);
+	--color-contrast-lower: hsl(0, 0%, 17%);
+	--color-contrast-low: hsl(0, 0%, 44%);
+	--color-contrast-medium: hsl(0, 0%, 79%);
+	--color-contrast-high: hsl(0, 0%, 91%);
+	--color-contrast-higher: hsl(0, 0%, 96%);
+}
+
+// -> https://codyhouse.co/blog/post/css-custom-properties-vs-sass-variables, https://codyhouse.co/blog/post/dark-light-switch-css-javascript

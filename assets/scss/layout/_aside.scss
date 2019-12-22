@@ -1,0 +1,48 @@
+.czar-header {
+	padding: 1rem 1rem 0.5rem 1rem;
+	width: 100%;
+	font-family: "Montserrat", Helvetica, Arial, sans-serif;
+	color: var(--color-primary);
+	background: var(--color-contrast-low);
+	background: linear-gradient(
+		180deg,
+		var(--color-contrast-low) 0%,
+		transparent 100%
+	);
+}
+
+.czar-header__text__wrapper {
+	text-align: right;
+	transition: all var(--duration-short) var(--standard-easing);
+}
+
+.czar-header__name__wrapper {
+	transition: all var(--duration-short) var(--standard-easing);
+	will-change: auto;
+}
+
+.czar-header__name {
+	text-decoration: none;
+	background-image: linear-gradient(
+		transparent 0%,
+		transparent 65%,
+		var(--color-secondary) 65%,
+		var(--color-secondary) 90%,
+		transparent 90%,
+		transparent
+	);
+}
+
+.separator {
+	width: 80%;
+	margin: 0 auto;
+	border: 0;
+	height: 1px;
+	background: var(--color-contrast-medium);
+	background-image: linear-gradient(
+		to right,
+		var(--color-contrast-low),
+		var(--color-contrast-medium),
+		var(--color-contrast-low)
+	);
+}

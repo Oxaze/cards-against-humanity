@@ -163,7 +163,7 @@ export default {
   width: 0%;
   opacity: 1;
   transition: width 0.1s, opacity 0.4s;
-  background-color: #fff;
+  background-color: hsl(231, 48%, 48%);
   z-index: 999999;
 }
 

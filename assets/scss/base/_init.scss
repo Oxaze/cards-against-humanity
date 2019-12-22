@@ -1,0 +1,15 @@
+body {
+	-webkit-font-smoothing: auto;
+	-moz-osx-font-smoothing: auto;
+	max-width: 100vw;
+	min-height: 100vh;
+	background-color: var(--color-bg);
+	color: var(--color-contrast-higher);
+	overflow-x: hidden;
+	overflow-y: auto;
+	scroll-behavior: smooth;
+}
+
+[v-cloak] {
+	display: none;
+}
