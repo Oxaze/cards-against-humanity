@@ -1,4 +1,7 @@
+// @import "../abstracts/mixins";
+
 body {
+	@include scrollbar;
 	-webkit-font-smoothing: auto;
 	-moz-osx-font-smoothing: auto;
 	max-width: 100vw;

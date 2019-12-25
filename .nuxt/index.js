@@ -13,7 +13,6 @@ import { createStore } from './store.js'
 /* Plugins */
 
 import nuxt_plugin_workbox_68fdb676 from 'nuxt_plugin_workbox_68fdb676' // Source: .\\workbox.js (mode: 'client')
-import nuxt_plugin_nuxticons_79b99ca4 from 'nuxt_plugin_nuxticons_79b99ca4' // Source: .\\nuxt-icons.js (mode: 'all')
 import nuxt_plugin_vuewaitplugin_f5c04ce8 from 'nuxt_plugin_vuewaitplugin_f5c04ce8' // Source: .\\vue-wait-plugin.js (mode: 'all')
 
 // Component: <ClientOnly>
@@ -173,10 +172,6 @@ async function createApp (ssrContext) {
 
   if (process.client && typeof nuxt_plugin_workbox_68fdb676 === 'function') {
     await nuxt_plugin_workbox_68fdb676(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_nuxticons_79b99ca4 === 'function') {
-    await nuxt_plugin_nuxticons_79b99ca4(app.context, inject)
   }
 
   if (typeof nuxt_plugin_vuewaitplugin_f5c04ce8 === 'function') {

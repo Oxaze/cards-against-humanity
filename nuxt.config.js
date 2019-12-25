@@ -17,8 +17,41 @@ export default {
 				content:
 					"Das legendäre Party-Game Cards Against Humanitykannst du hier kostenlos online mit deinen Freunden spielen.",
 			},
+			{
+				hid: "theme-color",
+				name: "theme-color",
+				content: "#3f51b5",
+			},
+			{
+				hid: "msapplication-TileColor",
+				name: "msapplication-TileColor",
+				content: "#3f51b5",
+			},
 		],
-		link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+		link: [
+			{
+				rel: "apple-touch-icon",
+				sizes: "180x180",
+				href: "/apple-touch-icon.png",
+			},
+			{
+				rel: "icon",
+				type: "image/png",
+				sizes: "32x32",
+				href: "/favicon-32x32.png",
+			},
+			{
+				rel: "icon",
+				type: "image/png",
+				sizes: "16x16",
+				href: "/favicon-16x16.png",
+			},
+			{
+				rel: "mask-icon",
+				href: "/safari-pinned-tab.svg",
+				color: "#3f51b5",
+			},
+		],
 	},
 	/*
 	 ** Customize the progress-bar color
@@ -44,7 +77,6 @@ export default {
 	modules: [
 		"@nuxtjs/pwa",
 		["vue-wait/nuxt", { useVuex: true }],
-		// { src: "~/plugins/vuex-persist", mode: "client" },
 		"@nuxtjs/style-resources",
 	],
 	styleResources: {
