@@ -17,16 +17,23 @@ body {
 	display: flex;
 	flex-flow: column nowrap;
 	min-height: 100vh;
-	max-width: var(--tablet);
-	margin: 0 auto;
-	padding: 0 var(--mobile-padding);
 }
 
 .main-wrapper__content {
 	flex: 1;
 	display: flex;
-	flex-flow: column wrap;
+	flex-flow: column nowrap;
+	max-width: var(--tablet);
+	margin: 0 auto;
+	padding: 0 var(--mobile-padding);
+}
+
+.main-wrapper__content__component {
+	display: flex;
 	justify-content: center;
+	align-items: center;
+	flex-flow: column wrap;
+	flex: 1;
 }
 
 [v-cloak] {

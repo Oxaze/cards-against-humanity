@@ -1,14 +1,16 @@
 <template>
 	<div class="main-wrapper">
-		<header class="site-header">
-			<h1>
-				<nuxt-link class="site-header__text" to="/"
-					>Cards Against Humanity</nuxt-link
-				>
-			</h1>
-		</header>
+		<div class="main-wrapper__content">
+			<header class="site-header">
+				<h1>
+					<nuxt-link class="site-header__text" to="/"
+						>Cards Against Humanity</nuxt-link
+					>
+				</h1>
+			</header>
 
-		<nuxt class="main-wrapper__content" />
+			<nuxt class="main-wrapper__content__component" />
+		</div>
 
 		<footer class="footer">
 			<div class="footer__wrapper">

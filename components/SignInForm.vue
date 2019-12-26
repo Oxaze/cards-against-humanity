@@ -1,5 +1,5 @@
 <template>
-	<form class="form">
+	<form>
 		<div class="form__input-group">
 			<input
 				type="text"
