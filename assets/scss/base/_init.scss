@@ -13,10 +13,20 @@ body {
 	scroll-behavior: smooth;
 }
 
-#app {
+.main-wrapper {
 	display: flex;
 	flex-flow: column nowrap;
 	min-height: 100vh;
+	max-width: var(--tablet);
+	margin: 0 auto;
+	padding: 0 var(--mobile-padding);
+}
+
+.main-wrapper__content {
+	flex: 1;
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
 }
 
 [v-cloak] {

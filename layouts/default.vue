@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div class="main-wrapper">
 		<header class="site-header">
 			<h1>
 				<nuxt-link class="site-header__text" to="/"
@@ -8,9 +8,9 @@
 			</h1>
 		</header>
 
-		<nuxt style="flex: 1;" />
+		<nuxt class="main-wrapper__content" />
 
-		<footer class="footer" role="contentinfo">
+		<footer class="footer">
 			<div class="footer__wrapper">
 				<ul class="footer__list">
 					<li class="footer__item footer__item--first">

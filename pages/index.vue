@@ -1,5 +1,5 @@
 <template>
-	<div class="main-wrapper">
+	<div>
 		<keep-alive>
 			<component v-bind:is="currentTab"></component>
 		</keep-alive>
