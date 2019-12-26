@@ -12,8 +12,9 @@ import NuxtBuildIndicator from './components/nuxt-build-indicator'
 import '..\\assets\\scss\\styles.scss'
 
 import _6f6c098b from '..\\layouts\\default.vue'
+import _77fa7a0d from '..\\layouts\\ingame.vue'
 
-const layouts = { "_default": _6f6c098b }
+const layouts = { "_default": _6f6c098b,"_ingame": _77fa7a0d }
 
 export default {
   head: {"title":"Cards Against Humanity Online","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Das legendäre Party-Game Cards Against Humanitykannst du hier kostenlos online mit deinen Freunden spielen."},{"hid":"theme-color","name":"theme-color","content":"#3f51b5"},{"hid":"msapplication-TileColor","name":"msapplication-TileColor","content":"#3f51b5"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"cards-against-humanity"},{"hid":"author","name":"author","content":"Julian"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"cards-against-humanity"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"cards-against-humanity"},{"hid":"og:description","name":"og:description","property":"og:description","content":"My grand Nuxt.js project"}],"link":[{"rel":"apple-touch-icon","sizes":"180x180","href":"\u002Fapple-touch-icon.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"32x32","href":"\u002Ffavicon-32x32.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"16x16","href":"\u002Ffavicon-16x16.png"},{"rel":"mask-icon","href":"\u002Fsafari-pinned-tab.svg","color":"#3f51b5"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.9b163f8c.json"}],"style":[],"script":[],"htmlAttrs":{"lang":"en"}},

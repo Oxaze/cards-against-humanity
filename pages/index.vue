@@ -1,72 +1,30 @@
 <template>
-  <div class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        cards-against-humanity
-      </h1>
-      <h2 class="subtitle">
-        My grand Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+	<div class="main-wrapper">
+		<keep-alive>
+			<component v-bind:is="currentTab"></component>
+		</keep-alive>
+	</div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
 export default {
-  components: {
-    Logo
-  }
-}
+	name: "SignIn",
+	components: {
+		SignInForm: () => import("@/components/SignInForm.vue"),
+		SignOutForm: () => import("@/components/SignOutForm.vue"),
+	},
+	data() {
+		return {
+			currentTab: "",
+		};
+	},
+	created() {
+		this.setTab("SignInForm");
+	},
+	methods: {
+		setTab(newTab) {
+			this.currentTab = newTab;
+		},
+	},
+};
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
