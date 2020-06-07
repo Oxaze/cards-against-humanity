@@ -78,6 +78,28 @@ export default {
 		"@nuxtjs/pwa",
 		["vue-wait/nuxt", { useVuex: true }],
 		"@nuxtjs/style-resources",
+		[
+			"@nuxtjs/firebase",
+			{
+				config: {
+					apiKey: "AIzaSyCUDTc604d5D3PQMaLHiOWmiiyfZh3TvN8",
+					authDomain: "cards-against-humanity-8a182.firebaseapp.com",
+					databaseURL:
+						"https://cards-against-humanity-8a182.firebaseio.com",
+					projectId: "cards-against-humanity-8a182",
+					storageBucket: "cards-against-humanity-8a182.appspot.com",
+					messagingSenderId: "378066292622",
+					appId: "1:378066292622:web:0ef778cbfca855c841dedf",
+					measurementId: "G-2ZC08RER28",
+				},
+				services: {
+					auth: true,
+					functions: false,
+					realtimeDb: true,
+					analytics: false,
+				},
+			},
+		],
 	],
 	styleResources: {
 		scss: ["~assets/scss/**.scss"],

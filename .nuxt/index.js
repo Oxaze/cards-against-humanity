@@ -13,6 +13,7 @@ import { createStore } from './store.js'
 /* Plugins */
 
 import nuxt_plugin_workbox_68fdb676 from 'nuxt_plugin_workbox_68fdb676' // Source: .\\workbox.js (mode: 'client')
+import nuxt_plugin_main_1d35c17b from 'nuxt_plugin_main_1d35c17b' // Source: .\\firebase-module\\main.js (mode: 'all')
 import nuxt_plugin_vuewaitplugin_f5c04ce8 from 'nuxt_plugin_vuewaitplugin_f5c04ce8' // Source: .\\vue-wait-plugin.js (mode: 'all')
 
 // Component: <ClientOnly>
@@ -60,6 +61,8 @@ async function createApp (ssrContext) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
+    head: {"title":"Cards Against Humanity Online","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Das legendäre Party-Game Cards Against Humanitykannst du hier kostenlos online mit deinen Freunden spielen."},{"hid":"theme-color","name":"theme-color","content":"#3f51b5"},{"hid":"msapplication-TileColor","name":"msapplication-TileColor","content":"#3f51b5"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"cards-against-humanity"},{"hid":"author","name":"author","content":"Julian"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"cards-against-humanity"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"cards-against-humanity"},{"hid":"og:description","name":"og:description","property":"og:description","content":"My grand Nuxt.js project"}],"link":[{"rel":"apple-touch-icon","sizes":"180x180","href":"\u002Fapple-touch-icon.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"32x32","href":"\u002Ffavicon-32x32.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"16x16","href":"\u002Ffavicon-16x16.png"},{"rel":"mask-icon","href":"\u002Fsafari-pinned-tab.svg","color":"#3f51b5"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.9b163f8c.json"}],"style":[],"script":[],"htmlAttrs":{"lang":"en"}},
+
     store,
     router,
     nuxt: {
@@ -89,7 +92,10 @@ async function createApp (ssrContext) {
         err = err || null
         app.context._errored = Boolean(err)
         err = err ? normalizeError(err) : null
-        const nuxt = this.nuxt || this.$options.nuxt
+        let nuxt = app.nuxt // to work with @vue/composition-api, see https://github.com/nuxt/nuxt.js/issues/6517#issuecomment-573280207
+        if (this) {
+          nuxt = this.nuxt || this.$options.nuxt
+        }
         nuxt.dateErr = Date.now()
         nuxt.err = err
         // Used in src/server.js
@@ -133,7 +139,7 @@ async function createApp (ssrContext) {
       throw new Error('inject(key, value) has no key provided')
     }
     if (value === undefined) {
-      throw new Error('inject(key, value) has no value provided')
+      throw new Error(`inject('${key}', value) has no value provided`)
     }
 
     key = '$' + key
@@ -172,6 +178,10 @@ async function createApp (ssrContext) {
 
   if (process.client && typeof nuxt_plugin_workbox_68fdb676 === 'function') {
     await nuxt_plugin_workbox_68fdb676(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_main_1d35c17b === 'function') {
+    await nuxt_plugin_main_1d35c17b(app.context, inject)
   }
 
   if (typeof nuxt_plugin_vuewaitplugin_f5c04ce8 === 'function') {

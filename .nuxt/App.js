@@ -2,22 +2,23 @@ import Vue from 'vue'
 
 import {
   getMatchedComponentsInstances,
+  getChildrenComponentInstancesUsingFetch,
   promisify,
-  globalHandleError
+  globalHandleError,
+  sanitizeComponent
 } from './utils'
 
 import NuxtLoading from './components/nuxt-loading.vue'
+import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
 import '..\\assets\\scss\\styles.scss'
 
 import _6f6c098b from '..\\layouts\\default.vue'
 import _77fa7a0d from '..\\layouts\\ingame.vue'
 
-const layouts = { "_default": _6f6c098b,"_ingame": _77fa7a0d }
+const layouts = { "_default": sanitizeComponent(_6f6c098b),"_ingame": sanitizeComponent(_77fa7a0d) }
 
 export default {
-  head: {"title":"Cards Against Humanity Online","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Das legendäre Party-Game Cards Against Humanitykannst du hier kostenlos online mit deinen Freunden spielen."},{"hid":"theme-color","name":"theme-color","content":"#3f51b5"},{"hid":"msapplication-TileColor","name":"msapplication-TileColor","content":"#3f51b5"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"cards-against-humanity"},{"hid":"author","name":"author","content":"Julian"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"cards-against-humanity"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"cards-against-humanity"},{"hid":"og:description","name":"og:description","property":"og:description","content":"My grand Nuxt.js project"}],"link":[{"rel":"apple-touch-icon","sizes":"180x180","href":"\u002Fapple-touch-icon.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"32x32","href":"\u002Ffavicon-32x32.png"},{"rel":"icon","type":"image\u002Fpng","sizes":"16x16","href":"\u002Ffavicon-16x16.png"},{"rel":"mask-icon","href":"\u002Fsafari-pinned-tab.svg","color":"#3f51b5"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.9b163f8c.json"}],"style":[],"script":[],"htmlAttrs":{"lang":"en"}},
-
   render (h, props) {
     const loadingEl = h('NuxtLoading', { ref: 'loading' })
 
@@ -50,7 +51,7 @@ export default {
       }
     }, [
       loadingEl,
-
+      h(NuxtBuildIndicator),
       transitionEl
     ])
   },
@@ -59,8 +60,10 @@ export default {
     isOnline: true,
 
     layout: null,
-    layoutName: ''
-  }),
+    layoutName: '',
+
+    nbFetching: 0
+    }),
 
   beforeCreate () {
     Vue.util.defineReactive(this, 'nuxt', this.$options.nuxt)
@@ -93,6 +96,10 @@ export default {
   computed: {
     isOffline () {
       return !this.isOnline
+    },
+
+      isFetching() {
+      return this.nbFetching > 0
     }
   },
 
@@ -121,8 +128,17 @@ export default {
       const promises = pages.map((page) => {
         const p = []
 
-        if (page.$options.fetch) {
+        // Old fetch
+        if (page.$options.fetch && page.$options.fetch.length) {
           p.push(promisify(page.$options.fetch, this.context))
+        }
+        if (page.$fetch) {
+          p.push(page.$fetch())
+        } else {
+          // Get all component instance to call $fetch
+          for (const component of getChildrenComponentInstancesUsingFetch(page.$vnode.componentInstance)) {
+            p.push(component.$fetch())
+          }
         }
 
         if (page.$options.asyncData) {
@@ -141,7 +157,7 @@ export default {
       try {
         await Promise.all(promises)
       } catch (error) {
-        this.$loading.fail()
+        this.$loading.fail(error)
         globalHandleError(error)
         this.error(error)
       }
@@ -151,7 +167,7 @@ export default {
     errorChanged () {
       if (this.nuxt.err && this.$loading) {
         if (this.$loading.fail) {
-          this.$loading.fail()
+          this.$loading.fail(this.nuxt.err)
         }
         if (this.$loading.finish) {
           this.$loading.finish()
@@ -160,6 +176,10 @@ export default {
     },
 
     setLayout (layout) {
+      if(layout && typeof layout !== 'string') {
+        throw new Error('[nuxt] Avoid using non-string value as layout property.')
+      }
+
       if (!layout || !layouts['_' + layout]) {
         layout = 'default'
       }
